@@ -5,6 +5,7 @@ import Home from './components/Home.jsx';
 import Features from './components/Features.jsx';
 import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
+import Results from './components/Results.jsx';
 
 // import logo from './assets/am-logo.png'
 
@@ -48,7 +49,17 @@ const App = () => {
           <Route exact path='/features' component={Features} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/contact' component={Contact} />
+          <Route exact path='/results' component={Results} />
         </Switch>
+
+        <footer className='footer mt-auto py-2'>
+          <div className='container'>
+            <span className='text-muted'>
+              Copyright &copy; {new Date().getFullYear()} - Applied Movement.
+              All Rights Reserved.
+            </span>
+          </div>
+        </footer>
       </div>
     </BrowserRouter>
   );
