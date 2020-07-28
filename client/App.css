@@ -15,14 +15,17 @@ body {
   background-color: var(--bg1);
 }
 
-#logo-text-applied, #logo-text-movement {
+/* NAVBAR */
+
+#logo-text-applied,
+#logo-text-movement {
   font-size: 1.25em;
 }
 #logo-text-applied {
-  color: var(--logo1)
+  color: var(--logo1);
 }
 #logo-text-movement {
-  color: var(--logo2)
+  color: var(--logo2);
 }
 
 .link {
@@ -48,7 +51,11 @@ body {
   color: var(--link);
 }
 
-.jumbotron { background-color: var(--bg2); }
+.jumbotron {
+  background-color: var(--bg2);
+}
+
+/* FOOTER */
 
 .footer > .container {
   width: auto;
@@ -64,13 +71,16 @@ footer {
   position: relative;
   top: 15rem;
   text-align: center;
-  color: var(--logo2)
+  color: var(--logo2);
 }
 
-.cta-heading, .features-heading {
-    font-family: 'Proza Libre', sans-serif;
-    font-weight: 800;
-    font-size: 2.5rem;
+/* HOME component */
+
+.cta-heading,
+.features-heading {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
 }
 
 .cta-button {
@@ -79,21 +89,36 @@ footer {
 }
 
 .card-title {
-    font-family: 'Proza Libre', sans-serif;
-    font-weight: 700;
-    font-size: 1.5rem;
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-.card-deck{
-margin-top: 5rem;
+.card-deck {
+  margin-top: 5rem;
 }
+
+/* FEATURES component */
 
 .features-button {
   background-color: var(--link);
   padding: 5px 10px;
   border-radius: 7px;
   margin-bottom: 10px;
-  color: #ffffff; 
- }
+  color: #ffffff;
+}
 
-.features-cards { margin-top: 4rem;}
+.features-cards {
+  margin-top: 4rem;
+}
+
+.col.mb-4 > .card {
+  position: relative;
+  transition:  .3s;
+}
+
+.col.mb-4 > .card:hover {
+  top: -15px;
+  transform: translate(0, -5px);
+  box-shadow: 0 1rem 3rem rgba(31,45,61,.125);
+}

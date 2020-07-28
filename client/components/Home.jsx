@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 
 const Home = () => {
-  
   return (
     <Fragment>
       <div className='jumbotron row'>
@@ -53,7 +52,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
     </Fragment>
   );
 };

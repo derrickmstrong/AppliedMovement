@@ -4,14 +4,12 @@ const Features = () => {
   return (
     <Fragment>
       <div className='d-flex justify-content-center px-2'>
-        <div className='features-button'>
-          DO MORE, WORK LESS
-        </div>
+        <div className='features-button'>DO MORE, WORK LESS</div>
       </div>
 
       <div className='features-heading text-center'>PRODUCT FEATURES</div>
 
-      <div className='row row-cols-1 row-cols-md-3 features-cards'>
+      <div className='row row-cols-1 row-cols-md-3 features-cards text-center'>
         <div className='col mb-4'>
           <div className='card'>
             <div className='card-body'>
