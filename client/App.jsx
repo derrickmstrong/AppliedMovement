@@ -7,22 +7,29 @@ import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx';
 
-// import logo from './assets/am-logo.png'
-
 const App = () => {
   return (
     <BrowserRouter>
       <div className='container my-5'>
-        <div className='nav nav-pills justify-content-between mb-3'>
+        <div className='nav nav-pills justify-content-between mb-5'>
           <div>
             <Link to='/' className='link nav-brand'>
               <img
-                src=''
+                src='/assets/am-logo.png'
                 width='50'
                 height='50'
                 alt='Applied Movement logo'
-                title='Homepage'
               />
+              <span
+                id='logo-text-applied'
+                className='ml-3'
+                title='Applied Movement Homepage'>
+                Applied{' '}
+              </span>
+              <span id='logo-text-movement' title='Applied Movement Homepage'>
+                {' '}
+                Movement
+              </span>
             </Link>
           </div>
           <ul className='nav nav-pills'>

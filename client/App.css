@@ -12,6 +12,17 @@
 body {
   color: var(--text);
   font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg1);
+}
+
+#logo-text-applied, #logo-text-movement {
+  font-size: 1.25em;
+}
+#logo-text-applied {
+  color: var(--logo1)
+}
+#logo-text-movement {
+  color: var(--logo2)
 }
 
 .link {
@@ -20,6 +31,7 @@ body {
 
 .link:hover {
   color: var(--link);
+  text-decoration: none;
 }
 
 .nav {
@@ -27,11 +39,16 @@ body {
   font-weight: 700;
 }
 
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-pills .nav-link.active {
   color: #fff;
   background-color: var(--logo1);
 }
+
+.nav-pills .nav-link.active:hover {
+  color: var(--link);
+}
+
+.jumbotron { background-color: var(--bg2); }
 
 .footer > .container {
   width: auto;
@@ -40,24 +57,33 @@ body {
 }
 
 .footer {
-  background-color: #f5f5f5;
+  background-color: var(--bg2);
 }
 
 footer {
   position: relative;
   top: 15rem;
   text-align: center;
+  color: var(--logo2)
 }
+
 .cta-heading, .features-heading {
     font-family: 'Proza Libre', sans-serif;
     font-weight: 800;
     font-size: 2.5rem;
 }
+
+.cta-button {
+  background-color: var(--logo1);
+  color: #ffffff;
+}
+
 .card-title {
     font-family: 'Proza Libre', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
 }
+
 .card-deck{
 margin-top: 5rem;
 }

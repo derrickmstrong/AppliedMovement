@@ -8,7 +8,7 @@ const Home = () => {
         <div className='first col'>
           <h3 className='cta-heading'>Type Less, Do More</h3>
           <p className='cta-text'> Text here</p>
-          <button className='btn btn-primary'> See video</button>
+          <button className='btn cta-button'> See video</button>
         </div>
         <div className='second col'>IMAGE</div>
       </div>
