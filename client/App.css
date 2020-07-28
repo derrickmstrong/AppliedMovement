@@ -1,0 +1,27 @@
+:root {
+    --logo1: #4DF01A;
+    --logo2: #4c4c4c;
+    --link: #5849fc;
+    --button: #0D7E0C;
+    /* --button: #77d13f; */
+    --bg1: #fefefe;
+    --bg2: #e0e0ea;
+    --text: #1e1e24;
+}
+
+body {
+    color: var(--text)
+}
+
+.link {
+    color: var(--text);
+}
+
+.link:hover {
+    color: var(--link);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: #fff;
+	background-color: var(--logo1);
+}

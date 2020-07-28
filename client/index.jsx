@@ -5,5 +5,9 @@ import '@babel/polyfill';
 import App from './App.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+    <div>
+    <App />
+    </div>, document.getElementById("root"));
