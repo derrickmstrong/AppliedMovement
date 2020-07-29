@@ -180,6 +180,7 @@ const Home = () => {
           <button className='btn submit-button'>Submit</button>
         </form>
       </div>
+    
     </Fragment>
   );
 };
