@@ -2,8 +2,6 @@ import React from 'react';
 import { Route, Switch, BrowserRouter, Link } from 'react-router-dom';
 
 import Home from './components/Home.jsx';
-import Features from './components/Features.jsx';
-import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
 import Results from './components/Results.jsx';
 
@@ -11,7 +9,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='container my-5'>
-        <div className='nav nav-pills justify-content-between mb-5'>
+        <div className='nav sticky-top nav-pills justify-content-between mb-5'>
           <div>
             <Link to='/' className='link nav-brand'>
               <img
@@ -34,14 +32,14 @@ const App = () => {
           </div>
           <ul className='nav nav-pills'>
             <li className='nav-item'>
-              <Link to='/features' className='link nav-link'>
+              <a href='/#features' className='link nav-link'>
                 Product Features
-              </Link>
+              </a>
             </li>
             <li className='nav-item'>
-              <Link to='/contact' className='link nav-link'>
+              <a href='/#contact' className='link nav-link'>
                 Contact Us
-              </Link>
+              </a>
             </li>
             <li className='nav-item'>
               <Link to='/login' className='nav-link active'>
@@ -53,9 +51,7 @@ const App = () => {
 
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/features' component={Features} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/contact' component={Contact} />
           <Route exact path='/results' component={Results} />
         </Switch>
 
