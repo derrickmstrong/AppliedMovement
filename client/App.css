@@ -57,6 +57,16 @@ body {
   color: var(--text);
 }
 
+.btn-logo1 {
+background-color: var(--logo1);
+color: white;
+}
+
+.btn-bg2 {
+background-color: var(--bg2);
+color: white;
+}
+
 .jumbotron {
   background-color: var(--bg2);
   margin: 0 0.25rem;
