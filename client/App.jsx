@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
+import BackToTop from 'react-easy-back-to-top';
+
 import Nav from './components/Nav.jsx';
 import Home from './components/Home.jsx';
+import PatientInfo from './components/PatientInfo.jsx';
 import Results from './components/Results.jsx';
 
-const App = () => {
+const App = () => { 
 
   return (
     <BrowserRouter>
@@ -13,9 +16,21 @@ const App = () => {
         <Nav />
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/patientinfo' component={PatientInfo} />
           <Route exact path='/results' component={Results} />
         </Switch>
-        
+        <BackToTop
+          backgroundColor='var(--link)'
+          position={{ right: '5%', bottom: '10%' }}
+          hover={{ backgroundColor: 'var(--link)', color: 'gray' }}
+          transition='all 0.5s'
+          showOnDistance={500}
+          borderRadius={10}
+          opacity='1'
+          color='white'
+          fontSize='12px'
+          text='Go to Top'
+        />
         <footer className='footer mt-auto py-2'>
           <div className='container'>
             <span className='text-muted'>
@@ -29,4 +44,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;   
