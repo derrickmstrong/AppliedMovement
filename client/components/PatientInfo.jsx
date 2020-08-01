@@ -126,36 +126,46 @@ setLateralShifting(e.target.value)
 const handleMedialShiftingChange = (e) => {
 setMedialShifting(e.target.value)
 }
+
 const handleNoToeClearanceChange = (e) => {
 setNoToeClearance(e.target.value)
 }
+
 const handleIssueResolvedChange = (e) => {
 setIssueResolved(e.target.value)
 }
+
 const handleOneWeekChange = (e) => {
 setOneWeek(e.target.value)
 }
+
 const handleLimitedWearChange = (e) => {
 setLimitedWear(e.target.value)
 }
+
 const handleUnlimitedWearChange = (e) => {
 setUnlimitedWear(e.target.value)
 }
+
 const handleReferChange = (e) => {
 setRefer(e.target.value)
 }
+
 const handleMedicalNotationChange = (e) => {
 setMedicalNotation(e.target.value)
 }
+
 const handleSubmit = (e) => {
 e.preventDefault()
+
+// Waiting on Route Info from Backend
 
 // let res = await fetch("/api/", {
 //       method: "POST",
 //       headers: {
 //         "Content-Type": "application/json",
 //       },
-//       body: JSON.stringify({ user, text }),
+//       body: JSON.stringify({ name, phone, ... }),
 //     });
 
 }
