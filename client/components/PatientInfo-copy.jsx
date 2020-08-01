@@ -127,6 +127,40 @@ const PatientInfo = () => {
     //     });
   };
 
+  const handleReset = () => {
+    setState({
+      ...state,
+      name: '',
+      phone: '',
+      dateOfBirth: '',
+      email: '',
+      leg: '',
+      arm: '',
+      partialFoot: '',
+      backBrace: '',
+      kneeBrace: '',
+      ankleBrace: '',
+      shoes: '',
+      inserts: '',
+      pain: '',
+      pressure: '',
+      rubbing: '',
+      tightness: '',
+      looseness: '',
+      tooTall: '',
+      tooShort: '',
+      lateralShifting: '',
+      medialShifting: '',
+      noToeClearance: '',
+      issueResolved: '',
+      oneWeek: '',
+      limitedWear: '',
+      unlimitedWear: '',
+      refer: '',
+      medicalNotation: '',
+    });
+  }
+
   return (
     <Fragment>
       <div className='jumbotron row mb-4'>
@@ -146,12 +180,12 @@ const PatientInfo = () => {
           {state.email}
           <br />
           {state.leg !== '' || state.arm !== '' || state.partialFoot !== ''
-            ? `Prothestics: ${state.leg}, ${state.arm}, ${state.partialFoot} `
+            ? `Prothestics: ${state.leg} ${state.arm} ${state.partialFoot} `
             : ''}
           <br />
         </div>
       </div>
-      <form>
+      <form id='form'>
         {/* Patient Name */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Patient Name</div>
@@ -723,9 +757,8 @@ const PatientInfo = () => {
               <button className='btn btn-primary mr-3' onClick={handleSubmit}>
                 Submit
               </button>
-              {/* 
-                <input className='btn btn-primary' type='reset' value='Reset' /> 
-            */}
+                <input className='btn btn-primary' type='reset' value='Reset' onClick={handleReset} /> 
+           
             </div>
           </div>
         </div>
