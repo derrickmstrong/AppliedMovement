@@ -1,6 +1,165 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 const PatientInfo = () => {
+  const [isCheckedLeg, setIsCheckedLeg] = useState(false)
+  const [isCheckedArm, setIsCheckedArm] = useState(false)
+const [name, setName] = useState('')
+const [phone, setPhone] = useState('')
+const [dateOfBirth, setDateOfBirth] = useState('')
+const [email, setEmail] = useState('')
+const [leg, setLeg] = useState('')
+const [arm, setArm] = useState('')
+const [partialFoot, setPartialFoot] = useState('')
+const [backBrace, setBackBrace] = useState('')
+const [kneeBrace, setKneeBrace] = useState('')
+const [ankleBrace, setAnkleBrace] = useState('')
+const [shoes, setShoes] = useState('')
+const [inserts, setInserts] = useState('')
+const [pain, setPain] = useState('')
+const [pressure, setPressure] = useState('')
+const [rubbing, setRubbing] = useState('')
+const [tightness, setTightness] = useState('')
+const [looseness, setLooseness] = useState('')
+const [tooTall, setTooTall] = useState('')
+const [tooShort, setTooShort] = useState('')
+const [lateralShifting, setLateralShifting] = useState('')
+const [medialShifting, setMedialShifting] = useState('')
+const [noToeClearance, setNoToeClearance] = useState('')
+const [issueResolved, setIssueResolved] = useState('')
+const [oneWeek, setOneWeek] = useState('')
+const [limitedWear, setLimitedWear] = useState('')
+const [unlimitedWear, setUnlimitedWear] = useState('')
+const [refer, setRefer] = useState('')
+const [medicalNotation, setMedicalNotation] = useState('')
+
+
+const handleNameChange = (e) => {
+setName(e.target.value)
+}
+
+const handlePhoneChange = (e) => {
+setPhone(e.target.value)
+}
+
+const handleEmailChange = (e) => {
+setEmail(e.target.value)
+}
+
+const handleDOBChange = (e) => {
+setDateOfBirth(e.target.value)
+}
+
+const handleLegChange = (e) => {
+  setIsCheckedLeg(!isCheckedLeg)
+  if (isCheckedLeg) {
+    setLeg('')
+  } else {
+    setLeg(e.target.value)
+  }
+}
+
+const handleArmChange = (e) => {
+setIsCheckedArm(!isCheckedArm)
+  if (isCheckedArm) {
+    setArm('')
+  } else {
+    setArm(e.target.value)
+  }
+}
+
+const handlePartialFootChange = (e) => {
+setPartialFoot(e.target.value)
+}
+
+const handleBackBraceChange = (e) => {
+setBackBrace(e.target.value)
+}
+
+const handleKneeBraceChange = (e) => {
+setKneeBrace(e.target.value)
+}
+
+const handleAnkleBraceChange = (e) => {
+setAnkleBrace(e.target.value)
+}
+
+const handleShoesChange = (e) => {
+setShoes(e.target.value)
+}
+
+const handleInsertsChange = (e) => {
+setInserts(e.target.value)
+}
+
+const handlePainChange = (e) => {
+setPain(e.target.value)
+}
+
+const handlePressureChange = (e) => {
+setPressure(e.target.value)
+}
+
+const handleRubbingChange = (e) => {
+setRubbing(e.target.value)
+}
+
+const handleTightnessChange = (e) => {
+setTightness(e.target.value)
+}
+
+const handleLoosenessChange = (e) => {
+setLooseness(e.target.value)
+}
+
+const handleTooTallChange = (e) => {
+setTooTall(e.target.value)
+}
+
+const handleTooShortChange = (e) => {
+setTooShort(e.target.value)
+}
+
+const handleLateralShiftingChange = (e) => {
+setLateralShifting(e.target.value)
+}
+
+const handleMedialShiftingChange = (e) => {
+setMedialShifting(e.target.value)
+}
+const handleNoToeClearanceChange = (e) => {
+setNoToeClearance(e.target.value)
+}
+const handleIssueResolvedChange = (e) => {
+setIssueResolved(e.target.value)
+}
+const handleOneWeekChange = (e) => {
+setOneWeek(e.target.value)
+}
+const handleLimitedWearChange = (e) => {
+setLimitedWear(e.target.value)
+}
+const handleUnlimitedWearChange = (e) => {
+setUnlimitedWear(e.target.value)
+}
+const handleReferChange = (e) => {
+setRefer(e.target.value)
+}
+const handleMedicalNotationChange = (e) => {
+setMedicalNotation(e.target.value)
+}
+const handleSubmit = (e) => {
+e.preventDefault()
+
+// let res = await fetch("/api/", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ user, text }),
+//     });
+
+}
+
 
   return (
     <Fragment>
@@ -10,7 +169,14 @@ const PatientInfo = () => {
           <p className='cta-text'> Text here</p>
           <button className='btn cta-button'> See video</button>
         </div>
-        <div className='second col'>IMAGE</div>
+        <div className='second col'>
+          {name} 
+          <br /> 
+          {leg} 
+          <br /> 
+          {arm}
+          <br />
+        </div>
       </div>
 
       <form>
@@ -23,6 +189,7 @@ const PatientInfo = () => {
               className='form-control'
               name='name'
               value={name}
+              onChange={handleNameChange}
             />
           </div>
         </div>
@@ -35,6 +202,7 @@ const PatientInfo = () => {
               type='text'
               className='form-control'
               name='phone'
+              onChange={handlePhoneChange}
               value={phone}
             />
           </div>
@@ -48,7 +216,8 @@ const PatientInfo = () => {
               type='text'
               className='form-control'
               name='dateofbirth'
-              value={dateofbirth}
+              onChange={handleDOBChange}
+              value={dateOfBirth}
             />
           </div>
         </div>
@@ -61,6 +230,7 @@ const PatientInfo = () => {
               type='email'
               className='form-control'
               name='email'
+              onChange={handleEmailChange}
               value={email}
             />
           </div>
@@ -93,7 +263,9 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='leg'
                   name='leg'
-                  value={leg}
+                  onChange={handleLegChange}
+                  value='leg'
+                  checked={isCheckedLeg}
                 />
                 <label class='form-check-label' for='leg'>
                   Leg
@@ -105,7 +277,9 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='arm'
                   name='arm'
-                  value={arm}
+                  onChange={handleArmChange}
+                  value='arm'
+                  checked={isCheckedArm}
                 />
                 <label class='form-check-label' for='arm'>
                   Arm
@@ -117,7 +291,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='partial-foot'
                   name='partial-foot'
-                  value={partial_foot}
+                  onChange={handlePartialFootChange}
+                  value={partialFoot}
                 />
                 <label class='form-check-label' for='partial-foot'>
                   Partial Foot
@@ -151,7 +326,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='back-brace'
                   name='back-brace'
-                  value={back_brace}
+                  onChange={handleBackBraceChange}
+                  value={backBrace}
                 />
                 <label class='form-check-label' for='back-brace'>
                   Back Brace
@@ -162,7 +338,8 @@ const PatientInfo = () => {
                   class='form-check-input'
                   type='checkbox'
                   id='knee-brace'
-                  value={knee_brace}
+                  onChange={handleKneeBraceChange}
+                  value={kneeBrace}
                 />
                 <label class='form-check-label' for='knee-brace'>
                   Knee Brace
@@ -173,7 +350,8 @@ const PatientInfo = () => {
                   class='form-check-input'
                   type='checkbox'
                   id='ankle-brace'
-                  value={ankle_brace}
+                  onChange={handleAnkleBraceChange}
+                  value={ankleBrace}
                 />
                 <label class='form-check-label' for='ankle-brace'>
                   Ankle Brace
@@ -207,6 +385,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='shoes'
                   name='shoes'
+                  onChange={handleShoesChange}
                   value={shoes}
                 />
                 <label class='form-check-label' for='shoes'>
@@ -219,6 +398,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='inserts'
                   name='inserts'
+                  onChange={handleInsertsChange}
                   value={inserts}
                 />
                 <label class='form-check-label' for='inserts'>
@@ -253,6 +433,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='pain'
                   name='pain'
+                  onChange={handlePainChange}
                   value={pain}
                 />
                 <label class='form-check-label' for='pain'>
@@ -265,6 +446,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='pressure'
                   name='pressure'
+                  onChange={handlePressureChange}
                   value={pressure}
                 />
                 <label class='form-check-label' for='pressure'>
@@ -277,6 +459,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='rubbing'
                   name='rubbing'
+                  onChange={handleRubbingChange}
                   value={rubbing}
                 />
                 <label class='form-check-label' for='rubbing'>
@@ -289,6 +472,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='inlineCheckbox4'
                   name='tightness'
+                  onChange={handleTightnessChange}
                   value={tightness}
                 />
                 <label class='form-check-label' for='tightness'>
@@ -301,6 +485,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='looseness'
                   name='looseness'
+                  onChange={handleLoosenessChange}
                   value={looseness}
                 />
                 <label class='form-check-label' for='looseness'>
@@ -335,7 +520,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='too-tall'
                   name='too-tall'
-                  value={too_tall}
+                  onChange={handleTooTallChange}
+                  value={tooTall}
                 />
                 <label class='form-check-label' for='too-tall'>
                   Too Tall
@@ -347,7 +533,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='too-short'
                   name='too-short'
-                  value={too_short}
+                  onChange={handleTooShortChange}
+                  value={tooShort}
                 />
                 <label class='form-check-label' for='too-short'>
                   Too Short
@@ -359,7 +546,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='lateral-shifting'
                   name='lateral-shifting'
-                  value={lateral_shifting}
+                  onChange={handleLateralShiftingChange}
+                  value={lateralShifting}
                 />
                 <label class='form-check-label' for='lateral-shifting'>
                   Lateral Shifting
@@ -371,7 +559,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='medial-shifting'
                   name='medial-shifting'
-                  value={medial_shifting}
+                  onChange={handleMedialShiftingChange}
+                  value={medialShifting}
                 />
                 <label class='form-check-label' for='medial-shifting'>
                   Medial Shifting
@@ -383,7 +572,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='no-toe-clearance'
                   name='no-toe-clearance'
-                  value={no_toe_clearance}
+                  onChange={handleNoToeClearanceChange}
+                  value={noToeClearance}
                 />
                 <label class='form-check-label' for='no-toe-clearance'>
                   No Toe Clearance
@@ -417,7 +607,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='issue-resolved'
                   name='issue-resolved'
-                  value={issue_resolved}
+                  onChange={handleIssueResolvedChange}
+                  value={issueResolved}
                 />
                 <label class='form-check-label' for='issue-resolved'>
                   Issue Resolved
@@ -429,7 +620,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='one-week-follow-up'
                   name='one-week-follow-up'
-                  value={one_week_follow_up}
+                  onChange={handleOneWeekChange}
+                  value={oneWeek}
                 />
                 <label class='form-check-label' for='one-week-follow-up'>
                   One Week Follow-up
@@ -441,7 +633,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='limited-wear-time'
                   name='limited-wear-time'
-                  value={limited_wear_time}
+                  onChange={handleLimitedWearChange}
+                  value={limitedWear}
                 />
                 <label class='form-check-label' for='limited-wear-time'>
                   Limited Wear Time
@@ -452,7 +645,8 @@ const PatientInfo = () => {
                   class='form-check-input'
                   type='checkbox'
                   id='unlimited-wear-time'
-                  value={unlimited_wear_time}
+                  onChange={handleUnlimitedWearChange}
+                  value={unlimitedWear}
                 />
                 <label class='form-check-label' for='unlimited-wear-time'>
                   Unlimited Wear Time
@@ -464,7 +658,8 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='refer-to-specialist'
                   name='refer-to-specialist'
-                  value={refer_to_specialist}
+                  onChange={handleReferChange}
+                  value={refer}
                 />
                 <label class='form-check-label' for='refer-to-specialist'>
                   Refer to Specialist
@@ -496,7 +691,8 @@ const PatientInfo = () => {
                 class='form-control'
                 id='medical_notation'
                 name='medical_notation'
-                value={medical_notation}
+                onChange={handleMedicalNotationChange}
+                value={medicalNotation}
                 rows='3'></textarea>
             </div>
           </div>
@@ -507,11 +703,8 @@ const PatientInfo = () => {
           <div className='col-2 text-right'></div>
           <div className='col-10'>
             <div className='submit-btn'>
-              <button
-                className='btn btn-primary mr-3'
-                onClick={handleSubmit}
-              >
-              Submit
+              <button className='btn btn-primary mr-3' onClick={handleSubmit}>
+                Submit
               </button>
               <input className='btn btn-primary' type='reset' value='Reset' />
             </div>
