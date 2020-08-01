@@ -18,7 +18,12 @@ const PatientInfo = () => {
         <div className='row mb-3'>
           <div className='col-2 text-right'>Patient Name</div>
           <div className='col-10'>
-            <input type='text' className='form-control' name='name' />
+            <input
+              type='text'
+              className='form-control'
+              name='name'
+              value={name}
+            />
           </div>
         </div>
 
@@ -26,7 +31,12 @@ const PatientInfo = () => {
         <div className='row mb-3'>
           <div className='col-2 text-right'>Phone Number</div>
           <div className='col-10'>
-            <input type='text' className='form-control' name='phone' />
+            <input
+              type='text'
+              className='form-control'
+              name='phone'
+              value={phone}
+            />
           </div>
         </div>
 
@@ -34,7 +44,12 @@ const PatientInfo = () => {
         <div className='row mb-3'>
           <div className='col-2 text-right'>Date of Birth</div>
           <div className='col-10'>
-            <input type='text' className='form-control' name='dateofbirth' />
+            <input
+              type='text'
+              className='form-control'
+              name='dateofbirth'
+              value={dateofbirth}
+            />
           </div>
         </div>
 
@@ -42,7 +57,12 @@ const PatientInfo = () => {
         <div className='row mb-3'>
           <div className='col-2 text-right'>Email</div>
           <div className='col-10'>
-            <input type='email' className='form-control' name='email' />
+            <input
+              type='email'
+              className='form-control'
+              name='email'
+              value={email}
+            />
           </div>
         </div>
 
@@ -73,7 +93,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='leg'
                   name='leg'
-                  value='Leg'
+                  value={leg}
                 />
                 <label class='form-check-label' for='leg'>
                   Leg
@@ -85,7 +105,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='arm'
                   name='arm'
-                  value='Arm'
+                  value={arm}
                 />
                 <label class='form-check-label' for='arm'>
                   Arm
@@ -97,7 +117,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='partial-foot'
                   name='partial-foot'
-                  value='partial-foot'
+                  value={partial_foot}
                 />
                 <label class='form-check-label' for='partial-foot'>
                   Partial Foot
@@ -131,7 +151,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='back-brace'
                   name='back-brace'
-                  value='back-brace'
+                  value={back_brace}
                 />
                 <label class='form-check-label' for='back-brace'>
                   Back Brace
@@ -142,7 +162,7 @@ const PatientInfo = () => {
                   class='form-check-input'
                   type='checkbox'
                   id='knee-brace'
-                  value='knee-brace'
+                  value={knee_brace}
                 />
                 <label class='form-check-label' for='knee-brace'>
                   Knee Brace
@@ -153,7 +173,7 @@ const PatientInfo = () => {
                   class='form-check-input'
                   type='checkbox'
                   id='ankle-brace'
-                  value='ankle-brace'
+                  value={ankle_brace}
                 />
                 <label class='form-check-label' for='ankle-brace'>
                   Ankle Brace
@@ -187,7 +207,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='shoes'
                   name='shoes'
-                  value='shoes'
+                  value={shoes}
                 />
                 <label class='form-check-label' for='shoes'>
                   Shoes
@@ -199,7 +219,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='inserts'
                   name='inserts'
-                  value='inserts'
+                  value={inserts}
                 />
                 <label class='form-check-label' for='inserts'>
                   Inserts
@@ -233,7 +253,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='pain'
                   name='pain'
-                  value='pain'
+                  value={pain}
                 />
                 <label class='form-check-label' for='pain'>
                   Pain
@@ -245,7 +265,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='pressure'
                   name='pressure'
-                  value='pressure'
+                  value={pressure}
                 />
                 <label class='form-check-label' for='pressure'>
                   Pressure
@@ -257,7 +277,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='rubbing'
                   name='rubbing'
-                  value='rubbing'
+                  value={rubbing}
                 />
                 <label class='form-check-label' for='rubbing'>
                   Rubbing
@@ -269,7 +289,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='inlineCheckbox4'
                   name='tightness'
-                  value='tightness'
+                  value={tightness}
                 />
                 <label class='form-check-label' for='tightness'>
                   Tightness
@@ -281,7 +301,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='looseness'
                   name='looseness'
-                  value='looseness'
+                  value={looseness}
                 />
                 <label class='form-check-label' for='looseness'>
                   Looseness
@@ -315,7 +335,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='too-tall'
                   name='too-tall'
-                  value='too-tall'
+                  value={too_tall}
                 />
                 <label class='form-check-label' for='too-tall'>
                   Too Tall
@@ -327,7 +347,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='too-short'
                   name='too-short'
-                  value='too-short'
+                  value={too_short}
                 />
                 <label class='form-check-label' for='too-short'>
                   Too Short
@@ -339,7 +359,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='lateral-shifting'
                   name='lateral-shifting'
-                  value='lateral-shifting'
+                  value={lateral_shifting}
                 />
                 <label class='form-check-label' for='lateral-shifting'>
                   Lateral Shifting
@@ -351,7 +371,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='medial-shifting'
                   name='medial-shifting'
-                  value='medial-shifting'
+                  value={medial_shifting}
                 />
                 <label class='form-check-label' for='medial-shifting'>
                   Medial Shifting
@@ -363,7 +383,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='no-toe-clearance'
                   name='no-toe-clearance'
-                  value='no-toe-clearance'
+                  value={no_toe_clearance}
                 />
                 <label class='form-check-label' for='no-toe-clearance'>
                   No Toe Clearance
@@ -397,7 +417,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='issue-resolved'
                   name='issue-resolved'
-                  value='issue-resolved'
+                  value={issue_resolved}
                 />
                 <label class='form-check-label' for='issue-resolved'>
                   Issue Resolved
@@ -409,7 +429,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='one-week-follow-up'
                   name='one-week-follow-up'
-                  value='one-week-follow-up'
+                  value={one_week_follow_up}
                 />
                 <label class='form-check-label' for='one-week-follow-up'>
                   One Week Follow-up
@@ -421,7 +441,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='limited-wear-time'
                   name='limited-wear-time'
-                  value='limited-wear-time'
+                  value={limited_wear_time}
                 />
                 <label class='form-check-label' for='limited-wear-time'>
                   Limited Wear Time
@@ -432,7 +452,7 @@ const PatientInfo = () => {
                   class='form-check-input'
                   type='checkbox'
                   id='unlimited-wear-time'
-                  value='unlimited-wear-time'
+                  value={unlimited_wear_time}
                 />
                 <label class='form-check-label' for='unlimited-wear-time'>
                   Unlimited Wear Time
@@ -444,7 +464,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='refer-to-specialist'
                   name='refer-to-specialist'
-                  value='refer-to-specialist'
+                  value={refer_to_specialist}
                 />
                 <label class='form-check-label' for='refer-to-specialist'>
                   Refer to Specialist
@@ -474,8 +494,9 @@ const PatientInfo = () => {
             <div class='form-group'>
               <textarea
                 class='form-control'
-                id='medicalnotation'
-                name='medicalnotation'
+                id='medical_notation'
+                name='medical_notation'
+                value={medical_notation}
                 rows='3'></textarea>
             </div>
           </div>
@@ -486,11 +507,12 @@ const PatientInfo = () => {
           <div className='col-2 text-right'></div>
           <div className='col-10'>
             <div className='submit-btn'>
-              <input
+              <button
                 className='btn btn-primary mr-3'
-                type='submit'
-                value='Submit'
-              />{' '}
+                onClick={handleSubmit}
+              >
+              Submit
+              </button>
               <input className='btn btn-primary' type='reset' value='Reset' />
             </div>
           </div>
