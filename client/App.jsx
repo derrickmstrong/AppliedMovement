@@ -5,7 +5,7 @@ import BackToTop from 'react-easy-back-to-top';
 
 import Nav from './components/Nav.jsx';
 import Home from './components/Home.jsx';
-import PatientInfo from './components/PatientInfo.jsx';
+import PatientInfoCopy from './components/PatientInfo-copy.jsx';
 import Results from './components/Results.jsx';
 
 const App = () => { 
@@ -16,7 +16,7 @@ const App = () => {
         <Nav />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/patientinfo' component={PatientInfo} />
+          <Route exact path='/patientinfo' component={PatientInfoCopy} />
           <Route exact path='/results' component={Results} />
         </Switch>
         <BackToTop

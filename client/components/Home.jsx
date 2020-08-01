@@ -156,7 +156,7 @@ const Home = () => {
       <div className='contact-form'>
         <form className='contact'>
           <div className='form-group'>
-            <label for='email'>Email address</label>
+            <label htmlFor='email'>Email address</label>
             <input
               type='email'
               className='form-control'
@@ -165,7 +165,7 @@ const Home = () => {
             />
           </div>
           <div className='form-group'>
-            <label for='subject'>Subject</label>
+            <label htmlFor='subject'>Subject</label>
             <select className='form-control' id='subject'>
               <option>Technical</option>
               <option>Comment</option>
@@ -174,7 +174,7 @@ const Home = () => {
             </select>
           </div>
           <div className='form-group'>
-            <label for='message'>Message</label>
+            <label htmlFor='message'>Message</label>
             <textarea className='form-control' id='message' rows='3'></textarea>
           </div>
           <button className='btn submit-button'>Submit</button>
