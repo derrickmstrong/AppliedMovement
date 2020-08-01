@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 
 const PatientInfo = () => {
+  // Setup state for all form elements, toggles
   const [state, setState] = useState({
     name: '',
     phone: '',
@@ -30,85 +31,90 @@ const PatientInfo = () => {
     unlimitedWear: '',
     refer: '',
     medicalNotation: '',
-    isPartialFoot: false,
-    isBackBrace: false,
-    isKneeBrace: false,
-    isAnkleBrace: false,
-    isShoes: false,
-    isInserts: false,
-    isPain: false,
-    isPressure: false,
-    isRubbing: false,
-    isTightness: false,
-    isLooseness: false,
-    isTooTall: false,
-    isTooShort: false,
-    isLateralShifting: false,
-    isMedialShifting: false,
-    isNoToeClearance: false,
-    isIssueResolved: false,
-    isOneWeek: false,
-    isLimitedWear: false,
-    isUnlimitedWear: false,
-    isRefer: false,
+    isLeg: null,
+    isArm: null,
+    isPartialFoot: null,
+    isBackBrace: null,
+    isKneeBrace: null,
+    isAnkleBrace: null,
+    isShoes: null,
+    isInserts: null,
+    isPain: null,
+    isPressure: null,
+    isRubbing: null,
+    isTightness: null,
+    isLooseness: null,
+    isTooTall: null,
+    isTooShort: null,
+    isLateralShifting: null,
+    isMedialShifting: null,
+    isNoToeClearance: null,
+    isIssueResolved: null,
+    isOneWeek: null,
+    isLimitedWear: null,
+    isUnlimitedWear: null,
+    isRefer: null,
   });
 
-  const [isLeg, setIsLeg] = useState(null);
-  const [isArm, setIsArm] = useState(null);
-
-  const isLegChecked = (e) => {
-    // console.log(e.target);
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-    // console.log(e.target.checked);
-    setIsLeg(!isLeg);
-    if (isLeg) {
-      setState({
-        ...state,
-        [e.target.name]: '',
-      });
-    } else {
-      setState({
-        ...state,
-        [e.target.name]: e.target.value,
-      });
-    }
-  };
-
-  const isArmChecked = (e) => {
-    setIsArm(!isArm);
-    if (isArm) {
-      setState({
-        ...state,
-        [e.target.name]: '',
-      });
-    } else {
-      setState({
-        ...state,
-        [e.target.name]: e.target.value,
-      });
-    }
-  };
-
-  const handleChange = (e) => {
-    if (e.target.type === 'checkbox' && e.target.name === 'leg') {
-      isLegChecked(e);
-    } else if (e.target.type === 'checkbox' && e.target.name === 'arm') {
-      isArmChecked(e);
-    } else {
-      const value = e.target.value;
-      setState({
-        ...state,
-        [e.target.name]: value,
-      });
-    }
-  };
-
+  // Check state in console
   console.log(state);
 
+  // handleChange = Checks for event changes in input, checkbox and textArea fields and updates state
+  const handleChange = (event) => {
+    if (event.target.type === 'checkbox' && event.target.name === 'leg') {
+      isChecked(event, 'isLeg');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'arm'
+    ) {
+      isChecked(event, 'isArm');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'partialFoot'
+    ) {
+      isChecked(event, 'isPartialFoot');
+    } else {
+      const value = event.target.value;
+      setState({
+        ...state,
+        [event.target.name]: value,
+      });
+    }
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
+  const isChecked = (event, currentCheckbox) => {
+    // console.log(event.target);
+    // console.log(event.target.name);
+    // console.log(event.target.value);
+    // console.log(event.target.checked);
+
+    // Toggle checkbox state
+    const toggle = `!state.${currentCheckbox}`;
+
+    // setState of currentCheckbox to true or false
+    setState({
+      ...state,
+      [currentCheckbox]: [toggle],
+    });
+
+    // If checkbox is checked value is targets pre-defined value else value is an empty string
+    if (event.target.checked) {
+      setState({
+        ...state,
+        [event.target.name]: event.target.value,
+      });
+    } else {
+      setState({
+        ...state,
+        [event.target.name]: '',
+      });
+    }
+  };
+
+  // handleSubmit = Post form data to backend
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     // Waiting on Route Info from Backend
 
@@ -124,25 +130,27 @@ const PatientInfo = () => {
   return (
     <Fragment>
       <div className='jumbotron row mb-4'>
-        <div className='first col'>
+        <div className='col'>
           <h3 className='cta-heading'>Type Less, Do More</h3>
           <p className='cta-text'> Text here</p>
           <button className='btn cta-button'> See video</button>
         </div>
-        <div className='second col'>
+        {/* Image Data */}
+        <div className='col'>
           {state.name}
           <br />
           {state.phone}
           <br />
           {state.dateOfBirth}
           <br />
-          {state.leg}
+          {state.email}
           <br />
-          {state.arm}
+          {state.leg !== '' || state.arm !== '' || state.partialFoot !== ''
+            ? `Prothestics: ${state.leg}, ${state.arm}, ${state.partialFoot} `
+            : ''}
           <br />
         </div>
       </div>
-
       <form>
         {/* Patient Name */}
         <div className='row mb-3'>
@@ -157,7 +165,6 @@ const PatientInfo = () => {
             />
           </div>
         </div>
-
         {/* Phone Number */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Phone Number</div>
@@ -171,7 +178,6 @@ const PatientInfo = () => {
             />
           </div>
         </div>
-
         {/* Date of Birth */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Date of Birth</div>
@@ -185,7 +191,6 @@ const PatientInfo = () => {
             />
           </div>
         </div>
-
         {/* Email */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Email</div>
@@ -199,7 +204,6 @@ const PatientInfo = () => {
             />
           </div>
         </div>
-
         {/* Area of Concern 
         <div className='row mb-3'>
           <div className='col-2 text-right'>Area of Concern</div>
@@ -215,13 +219,13 @@ const PatientInfo = () => {
           </div>
         </div>
         */}
-
         {/* Prosthetics */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Prosthetics</div>
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
+                {/* Leg */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -236,6 +240,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Arm */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -250,14 +255,15 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Partial Foot */}
                 <input
                   className='form-check-input'
                   type='checkbox'
-                  id='partial-foot'
-                  name='partial-foot'
+                  id='partialFoot'
+                  name='partialFoot'
                   onChange={handleChange}
-                  checked={state.isChecked}
-                  value={state.partialFoot}
+                  value='partial foot'
+                  checked={state.isPartialFoot}
                 />
                 <label className='form-check-label' htmlFor='partial-foot'>
                   Partial Foot
@@ -286,6 +292,7 @@ const PatientInfo = () => {
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
+                {/* Back Brace */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -300,6 +307,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Knee Brace */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -313,6 +321,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Ankle Brace */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -348,6 +357,7 @@ const PatientInfo = () => {
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
+                {/* Shoes */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -362,6 +372,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Inserts */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -398,6 +409,7 @@ const PatientInfo = () => {
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
+                {/* Pain */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -412,6 +424,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Pressure */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -426,6 +439,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Rubbing */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -440,6 +454,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Tightness */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -454,6 +469,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Looseness */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -490,6 +506,7 @@ const PatientInfo = () => {
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
+                {/* Too Tall */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -504,6 +521,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Too Short */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -518,6 +536,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Lateral Shifting */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -532,6 +551,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Medial Shifting */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -546,6 +566,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* No Toe Clearance */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -582,6 +603,7 @@ const PatientInfo = () => {
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
+                {/* Issue Resolved */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -596,6 +618,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* One Week Follow-up */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -612,6 +635,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Limited Wear Time */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -626,6 +650,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Unlimited Wear Time */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -641,6 +666,7 @@ const PatientInfo = () => {
                 </label>
               </div>
               <div className='form-check form-check-inline'>
+                {/* Refer To Specialist */}
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -680,8 +706,8 @@ const PatientInfo = () => {
             <div className='form-group'>
               <textarea
                 className='form-control'
-                id='medical_notation'
-                name='medical_notation'
+                id='medicalNotation'
+                name='medicalNotation'
                 onChange={handleChange}
                 value={state.medicalNotation}
                 rows='3'></textarea>
@@ -697,7 +723,9 @@ const PatientInfo = () => {
               <button className='btn btn-primary mr-3' onClick={handleSubmit}>
                 Submit
               </button>
-              <input className='btn btn-primary' type='reset' value='Reset' />
+              {/* 
+                <input className='btn btn-primary' type='reset' value='Reset' /> 
+            */}
             </div>
           </div>
         </div>
