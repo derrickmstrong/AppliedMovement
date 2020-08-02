@@ -7,6 +7,7 @@ import Nav from './components/Nav.jsx';
 import Home from './components/Home.jsx';
 import PatientInfo from './components/PatientInfo.jsx';
 import Results from './components/Results.jsx';
+import Admin from './components/Admin.jsx';
 
 const App = () => { 
 
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/patientinfo' component={PatientInfo} />
           <Route exact path='/results' component={Results} />
+          <Route exact path='/admin' component={Admin} />
         </Switch>
         <BackToTop
           backgroundColor='var(--link)'

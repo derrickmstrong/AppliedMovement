@@ -164,6 +164,19 @@ footer {
   color: #ffffff;
 }
 
+/* ALTERNATIVE buttons */
+
+.alt-button {
+  background-color: var(--link);
+  color: #ffffff;
+}
+.alt-button:hover {
+  background-color: var(--link);
+  color: gray;
+}
+
+
+
 /* Media Queries */
 @media screen and (max-width: 500px) {
   #features, #contact {

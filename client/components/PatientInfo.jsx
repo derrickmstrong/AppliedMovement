@@ -1,4 +1,6 @@
 import React, { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const PatientInfo = () => {
   // Setup state for all form elements, toggles
@@ -56,9 +58,6 @@ const PatientInfo = () => {
     isRefer: null,
   });
 
-  // Check state in console
-  console.log(state);
-
   // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
   const isChecked = (event, currentCheckbox) => {
     // console.log(event.target);
@@ -88,6 +87,48 @@ const PatientInfo = () => {
       });
     }
   };
+
+  // handleCheckbox with forOf loop instead of current approach in handleChange
+  const checkboxes = [
+    ['arm', 'isArm'],
+    ['partialFoot', 'isPartialFoot'],
+    ['backBrace', 'isBackBrace'],
+    ['kneeBrace', 'isKneeBrace'],
+    ['ankleBrace', 'isAnkleBrace'],
+    ['shoes', 'isShoes'],
+    ['inserts', 'isInserts'],
+    ['pain', 'isPain'],
+    ['pressure', 'isPressure'],
+    ['rubbing', 'isRubbing'],
+    ['tightness', 'isTightness'],
+    ['looseness', 'isLooseness'],
+    ['tooTall', 'isTooTall'],
+    ['tooShort', 'isTooShort'],
+    ['lateralShifting', 'isLateralShifting'],
+    ['medialShifting', 'isMedialShifting'],
+    ['noToeClearance', 'isNoToeClearance'],
+    ['issueResolved', 'isIssueResolved'],
+    ['oneWeek', 'isOneWeek'],
+    ['limitedWear', 'isLimitedWear'],
+    ['unlimitedWear', 'isUnlimitedWear'],
+    ['refer', 'isRefer'],
+  ];
+  // handleCheckbox fields
+  // const handleCheckbox = (event) => {
+  //     if (event.target.type === 'checkbox' && event.target.name === 'leg') {
+  //       isChecked(event, 'isLeg');
+  //     }
+  // FIXME: I want the for of loop here so that I can loop over the necessary else if statements
+    for (const [checkbox, isChecked] of checkboxes) {
+  console.log(`else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === '${checkbox}'
+    ) {
+      isChecked(event, '${isChecked});
+    }`
+  )
+  }
+    // }
 
   // handleChange = Checks for event changes in input, checkbox and textArea fields and updates state
   const handleChange = (event) => {
@@ -212,20 +253,29 @@ const PatientInfo = () => {
     }
   };
 
-  // handleSubmit = Post form data to backend
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  // Waiting on Route Info from Backend
-
-  //   let res = await fetch("/api/", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ name, phone, dateOfBirth, email, leg, arm, partialFoot, backBrace,kneeBrace, ankleBrace, shoes, inserts, pain, pressure, rubbing, tightness, looseness, tooTall, tooShort, lateralShifting, medialShifting,  noToeClearance, issueResolved, oneWeek, limitedWear, unlimitedWear, refer, medicalNotation }),
+  // handleInput fields
+  // const handleInput = (event) => {
+  //       const value = event.target.value;
+  //       setState({
+  //         ...state,
+  //         [event.target.name]: value,
   //       });
-  // };
+  //     }
+
+  // handleSubmit = Post form data to backend
+  const handleSubmit = (event) => {
+    // event.preventDefault();
+
+    // FIXME: Waiting on Route Info from Backend
+    // let res = await fetch("/api/", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    // TODO: Find out if we can spread state here ie. ...state instead of listing all of the pieces of state
+    //       body: JSON.stringify({ name, phone, dateOfBirth, email, leg, arm, partialFoot, backBrace,kneeBrace, ankleBrace, shoes, inserts, pain, pressure, rubbing, tightness, looseness, tooTall, tooShort, lateralShifting, medialShifting, noToeClearance, issueResolved, oneWeek, limitedWear, unlimitedWear, refer, medicalNotation }),
+    //     });
+  };
 
   const handleReset = () => {
     setState({
@@ -261,8 +311,12 @@ const PatientInfo = () => {
     });
   };
 
+  // Check state in console
+  console.log(state);
+
   return (
     <Fragment>
+    <div id='top'></div>
       <div className='jumbotron row mb-4'>
         <div className='col'>
           <h3 className='cta-heading'>Type Less, Do More</h3>
@@ -851,11 +905,16 @@ const PatientInfo = () => {
           <div className='col-2 text-right'></div>
           <div className='col-10'>
             <div className='submit-btn'>
-              <button className='btn btn-primary mr-3' onClick={handleSubmit}>
-                Submit
-              </button>
+              {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
+              <Link to='/results'>
+                <button
+                  className='btn submit-button mr-3'
+                  onClick={handleSubmit}>
+                  Submit
+                </button>
+              </Link>
               <input
-                className='btn btn-primary'
+                className='btn alt-button'
                 type='reset'
                 value='Reset'
                 onClick={handleReset}

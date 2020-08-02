@@ -4,12 +4,18 @@ const Home = () => {
   return (
     <Fragment>
       <div className='jumbotron row'>
-        <div className='first col'>
-          <h3 className='cta-heading'>Type Less, Do More</h3>
-          <p className='cta-text'> Text here</p>
+        <div className='col'>
+          <h3 className='cta-heading mt-5'>Type Less<br />Do More</h3>
+          <p className='cta-text'> Text here Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ea, sed officia quae maiores officiis libero repellat earum quas unde praesentium quod, amet iusto ducimus fuga ut.</p>
           <button className='btn cta-button'> See video</button>
         </div>
-        <div className='second col'>IMAGE</div>
+        <div className='col'>
+          <img
+            className='img-fluid'
+            src='/assets/am-jumbotron.png'
+            alt='Applied Movement'
+          />
+        </div>
       </div>
 
       <div className='card-deck'>
@@ -180,7 +186,6 @@ const Home = () => {
           <button className='btn submit-button'>Submit</button>
         </form>
       </div>
-    
     </Fragment>
   );
 };
