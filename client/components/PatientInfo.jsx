@@ -1,195 +1,291 @@
 import React, { useState, Fragment } from 'react';
 
 const PatientInfo = () => {
-  const [isCheckedLeg, setIsCheckedLeg] = useState(false)
-  const [isCheckedArm, setIsCheckedArm] = useState(false)
-const [name, setName] = useState('')
-const [phone, setPhone] = useState('')
-const [dateOfBirth, setDateOfBirth] = useState('')
-const [email, setEmail] = useState('')
-const [leg, setLeg] = useState('')
-const [arm, setArm] = useState('')
-const [partialFoot, setPartialFoot] = useState('')
-const [backBrace, setBackBrace] = useState('')
-const [kneeBrace, setKneeBrace] = useState('')
-const [ankleBrace, setAnkleBrace] = useState('')
-const [shoes, setShoes] = useState('')
-const [inserts, setInserts] = useState('')
-const [pain, setPain] = useState('')
-const [pressure, setPressure] = useState('')
-const [rubbing, setRubbing] = useState('')
-const [tightness, setTightness] = useState('')
-const [looseness, setLooseness] = useState('')
-const [tooTall, setTooTall] = useState('')
-const [tooShort, setTooShort] = useState('')
-const [lateralShifting, setLateralShifting] = useState('')
-const [medialShifting, setMedialShifting] = useState('')
-const [noToeClearance, setNoToeClearance] = useState('')
-const [issueResolved, setIssueResolved] = useState('')
-const [oneWeek, setOneWeek] = useState('')
-const [limitedWear, setLimitedWear] = useState('')
-const [unlimitedWear, setUnlimitedWear] = useState('')
-const [refer, setRefer] = useState('')
-const [medicalNotation, setMedicalNotation] = useState('')
+  // Setup state for all form elements, toggles
+  const [state, setState] = useState({
+    name: '',
+    phone: '',
+    dateOfBirth: '',
+    email: '',
+    leg: '',
+    arm: '',
+    partialFoot: '',
+    backBrace: '',
+    kneeBrace: '',
+    ankleBrace: '',
+    shoes: '',
+    inserts: '',
+    pain: '',
+    pressure: '',
+    rubbing: '',
+    tightness: '',
+    looseness: '',
+    tooTall: '',
+    tooShort: '',
+    lateralShifting: '',
+    medialShifting: '',
+    noToeClearance: '',
+    issueResolved: '',
+    oneWeek: '',
+    limitedWear: '',
+    unlimitedWear: '',
+    refer: '',
+    medicalNotation: '',
+    isLeg: null,
+    isArm: null,
+    isPartialFoot: null,
+    isBackBrace: null,
+    isKneeBrace: null,
+    isAnkleBrace: null,
+    isShoes: null,
+    isInserts: null,
+    isPain: null,
+    isPressure: null,
+    isRubbing: null,
+    isTightness: null,
+    isLooseness: null,
+    isTooTall: null,
+    isTooShort: null,
+    isLateralShifting: null,
+    isMedialShifting: null,
+    isNoToeClearance: null,
+    isIssueResolved: null,
+    isOneWeek: null,
+    isLimitedWear: null,
+    isUnlimitedWear: null,
+    isRefer: null,
+  });
 
+  // Check state in console
+  console.log(state);
 
-const handleNameChange = (e) => {
-setName(e.target.value)
-}
+  // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
+  const isChecked = (event, currentCheckbox) => {
+    // console.log(event.target);
+    // console.log(event.target.name);
+    // console.log(event.target.value);
+    // console.log(event.target.checked);
 
-const handlePhoneChange = (e) => {
-setPhone(e.target.value)
-}
+    // Toggle checkbox state
+    const toggle = `!state.${currentCheckbox}`;
 
-const handleEmailChange = (e) => {
-setEmail(e.target.value)
-}
+    // setState of currentCheckbox to true or false
+    setState({
+      ...state,
+      [currentCheckbox]: [toggle],
+    });
 
-const handleDOBChange = (e) => {
-setDateOfBirth(e.target.value)
-}
+    // If checkbox is checked value is targets pre-defined value else value is an empty string
+    if (event.target.checked) {
+      setState({
+        ...state,
+        [event.target.name]: event.target.value,
+      });
+    } else {
+      setState({
+        ...state,
+        [event.target.name]: '',
+      });
+    }
+  };
 
-const handleLegChange = (e) => {
-  setIsCheckedLeg(!isCheckedLeg)
-  if (isCheckedLeg) {
-    setLeg('')
-  } else {
-    setLeg(e.target.value)
-  }
-}
+  // handleChange = Checks for event changes in input, checkbox and textArea fields and updates state
+  const handleChange = (event) => {
+    if (event.target.type === 'checkbox' && event.target.name === 'leg') {
+      isChecked(event, 'isLeg');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'arm'
+    ) {
+      isChecked(event, 'isArm');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'partialFoot'
+    ) {
+      isChecked(event, 'isPartialFoot');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'backBrace'
+    ) {
+      isChecked(event, 'isBackBrace');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'kneeBrace'
+    ) {
+      isChecked(event, 'isKneeBrace');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'ankleBrace'
+    ) {
+      isChecked(event, 'isAnkleBrace');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'shoes'
+    ) {
+      isChecked(event, 'isShoes');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'inserts'
+    ) {
+      isChecked(event, 'isInserts');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'pain'
+    ) {
+      isChecked(event, 'isPain');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'Pressure'
+    ) {
+      isChecked(event, 'isPressure');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'rubbing'
+    ) {
+      isChecked(event, 'isRubbing');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'tightness'
+    ) {
+      isChecked(event, 'isTightness');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'looseness'
+    ) {
+      isChecked(event, 'isLooseness');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'tooTall'
+    ) {
+      isChecked(event, 'tooTall');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'tooShort'
+    ) {
+      isChecked(event, 'isTooShort');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'lateralShifting'
+    ) {
+      isChecked(event, 'isLateralShifting');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'medialShifting'
+    ) {
+      isChecked(event, 'isMedialShifting');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'noToeClearance'
+    ) {
+      isChecked(event, 'isNoToeClearance');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'issueResolved'
+    ) {
+      isChecked(event, 'isIssueResolved');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'oneWeek'
+    ) {
+      isChecked(event, 'isOneWeek');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'limitedWear'
+    ) {
+      isChecked(event, 'isLimitedWear');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'unlimitedWear'
+    ) {
+      isChecked(event, 'isUnlimitedWear');
+    } else if (
+      event.target.type === 'checkbox' &&
+      event.target.name === 'refer'
+    ) {
+      isChecked(event, 'isRefer');
+    } else {
+      const value = event.target.value;
+      setState({
+        ...state,
+        [event.target.name]: value,
+      });
+    }
+  };
 
-const handleArmChange = (e) => {
-setIsCheckedArm(!isCheckedArm)
-  if (isCheckedArm) {
-    setArm('')
-  } else {
-    setArm(e.target.value)
-  }
-}
+  // handleSubmit = Post form data to backend
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
 
-const handlePartialFootChange = (e) => {
-setPartialFoot(e.target.value)
-}
+  // Waiting on Route Info from Backend
 
-const handleBackBraceChange = (e) => {
-setBackBrace(e.target.value)
-}
+  //   let res = await fetch("/api/", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ name, phone, dateOfBirth, email, leg, arm, partialFoot, backBrace,kneeBrace, ankleBrace, shoes, inserts, pain, pressure, rubbing, tightness, looseness, tooTall, tooShort, lateralShifting, medialShifting,  noToeClearance, issueResolved, oneWeek, limitedWear, unlimitedWear, refer, medicalNotation }),
+  //       });
+  // };
 
-const handleKneeBraceChange = (e) => {
-setKneeBrace(e.target.value)
-}
-
-const handleAnkleBraceChange = (e) => {
-setAnkleBrace(e.target.value)
-}
-
-const handleShoesChange = (e) => {
-setShoes(e.target.value)
-}
-
-const handleInsertsChange = (e) => {
-setInserts(e.target.value)
-}
-
-const handlePainChange = (e) => {
-setPain(e.target.value)
-}
-
-const handlePressureChange = (e) => {
-setPressure(e.target.value)
-}
-
-const handleRubbingChange = (e) => {
-setRubbing(e.target.value)
-}
-
-const handleTightnessChange = (e) => {
-setTightness(e.target.value)
-}
-
-const handleLoosenessChange = (e) => {
-setLooseness(e.target.value)
-}
-
-const handleTooTallChange = (e) => {
-setTooTall(e.target.value)
-}
-
-const handleTooShortChange = (e) => {
-setTooShort(e.target.value)
-}
-
-const handleLateralShiftingChange = (e) => {
-setLateralShifting(e.target.value)
-}
-
-const handleMedialShiftingChange = (e) => {
-setMedialShifting(e.target.value)
-}
-
-const handleNoToeClearanceChange = (e) => {
-setNoToeClearance(e.target.value)
-}
-
-const handleIssueResolvedChange = (e) => {
-setIssueResolved(e.target.value)
-}
-
-const handleOneWeekChange = (e) => {
-setOneWeek(e.target.value)
-}
-
-const handleLimitedWearChange = (e) => {
-setLimitedWear(e.target.value)
-}
-
-const handleUnlimitedWearChange = (e) => {
-setUnlimitedWear(e.target.value)
-}
-
-const handleReferChange = (e) => {
-setRefer(e.target.value)
-}
-
-const handleMedicalNotationChange = (e) => {
-setMedicalNotation(e.target.value)
-}
-
-const handleSubmit = (e) => {
-e.preventDefault()
-
-// Waiting on Route Info from Backend
-
-// let res = await fetch("/api/", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ name, phone, ... }),
-//     });
-
-}
-
+  const handleReset = () => {
+    setState({
+      ...state,
+      name: '',
+      phone: '',
+      dateOfBirth: '',
+      email: '',
+      leg: '',
+      arm: '',
+      partialFoot: '',
+      backBrace: '',
+      kneeBrace: '',
+      ankleBrace: '',
+      shoes: '',
+      inserts: '',
+      pain: '',
+      pressure: '',
+      rubbing: '',
+      tightness: '',
+      looseness: '',
+      tooTall: '',
+      tooShort: '',
+      lateralShifting: '',
+      medialShifting: '',
+      noToeClearance: '',
+      issueResolved: '',
+      oneWeek: '',
+      limitedWear: '',
+      unlimitedWear: '',
+      refer: '',
+      medicalNotation: '',
+    });
+  };
 
   return (
     <Fragment>
       <div className='jumbotron row mb-4'>
-        <div className='first col'>
+        <div className='col'>
           <h3 className='cta-heading'>Type Less, Do More</h3>
           <p className='cta-text'> Text here</p>
           <button className='btn cta-button'> See video</button>
         </div>
-        <div className='second col'>
-          {name} 
-          <br /> 
-          {leg} 
-          <br /> 
-          {arm}
+        {/* Image Data */}
+        <div className='col'>
+          {state.name}
+          <br />
+          {state.phone}
+          <br />
+          {state.dateOfBirth}
+          <br />
+          {state.email}
+          <br />
+          {state.leg !== '' || state.arm !== '' || state.partialFoot !== ''
+            ? `Prothestics: ${state.leg} ${state.arm} ${state.partialFoot} `
+            : ''}
           <br />
         </div>
       </div>
-
-      <form>
+      <form id='form'>
         {/* Patient Name */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Patient Name</div>
@@ -198,12 +294,11 @@ e.preventDefault()
               type='text'
               className='form-control'
               name='name'
-              value={name}
-              onChange={handleNameChange}
+              value={state.name}
+              onChange={handleChange}
             />
           </div>
         </div>
-
         {/* Phone Number */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Phone Number</div>
@@ -212,12 +307,11 @@ e.preventDefault()
               type='text'
               className='form-control'
               name='phone'
-              onChange={handlePhoneChange}
-              value={phone}
+              onChange={handleChange}
+              value={state.phone}
             />
           </div>
         </div>
-
         {/* Date of Birth */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Date of Birth</div>
@@ -225,13 +319,12 @@ e.preventDefault()
             <input
               type='text'
               className='form-control'
-              name='dateofbirth'
-              onChange={handleDOBChange}
-              value={dateOfBirth}
+              name='dateOfBirth'
+              onChange={handleChange}
+              value={state.dateOfBirth}
             />
           </div>
         </div>
-
         {/* Email */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Email</div>
@@ -240,12 +333,11 @@ e.preventDefault()
               type='email'
               className='form-control'
               name='email'
-              onChange={handleEmailChange}
-              value={email}
+              onChange={handleChange}
+              value={state.email}
             />
           </div>
         </div>
-
         {/* Area of Concern 
         <div className='row mb-3'>
           <div className='col-2 text-right'>Area of Concern</div>
@@ -261,50 +353,53 @@ e.preventDefault()
           </div>
         </div>
         */}
-
         {/* Prosthetics */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Prosthetics</div>
           <div className='col-10'>
-            <div class='form-group form-check'>
-              <div class='form-check form-check-inline'>
+            <div className='form-group form-check'>
+              <div className='form-check form-check-inline'>
+                {/* Leg */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='leg'
                   name='leg'
-                  onChange={handleLegChange}
+                  onChange={handleChange}
                   value='leg'
-                  checked={isCheckedLeg}
+                  checked={state.isLeg}
                 />
-                <label class='form-check-label' for='leg'>
+                <label className='form-check-label' htmlFor='leg'>
                   Leg
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Arm */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='arm'
                   name='arm'
-                  onChange={handleArmChange}
+                  onChange={handleChange}
                   value='arm'
-                  checked={isCheckedArm}
+                  checked={state.isArm}
                 />
-                <label class='form-check-label' for='arm'>
+                <label className='form-check-label' htmlFor='arm'>
                   Arm
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Partial Foot */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='partial-foot'
-                  name='partial-foot'
-                  onChange={handlePartialFootChange}
-                  value={partialFoot}
+                  id='partialFoot'
+                  name='partialFoot'
+                  onChange={handleChange}
+                  value='partial foot'
+                  checked={state.isPartialFoot}
                 />
-                <label class='form-check-label' for='partial-foot'>
+                <label className='form-check-label' htmlFor='partialFoot'>
                   Partial Foot
                 </label>
                 <svg
@@ -315,7 +410,7 @@ e.preventDefault()
                   fill='currentColor'
                   xmlns='http://www.w3.org/2000/svg'>
                   <path
-                    fill-rule='evenodd'
+                    fillRule='evenodd'
                     d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                   />
                 </svg>{' '}
@@ -329,41 +424,49 @@ e.preventDefault()
         <div className='row mb-3'>
           <div className='col-2 text-right'>Orthotics</div>
           <div className='col-10'>
-            <div class='form-group form-check'>
-              <div class='form-check form-check-inline'>
+            <div className='form-group form-check'>
+              <div className='form-check form-check-inline'>
+                {/* Back Brace */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='back-brace'
-                  name='back-brace'
-                  onChange={handleBackBraceChange}
-                  value={backBrace}
+                  id='backBrace'
+                  name='backBrace'
+                  onChange={handleChange}
+                  checked={state.isBackBrace}
+                  value='back brace'
                 />
-                <label class='form-check-label' for='back-brace'>
+                <label className='form-check-label' htmlFor='backBrace'>
                   Back Brace
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Knee Brace */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='knee-brace'
-                  onChange={handleKneeBraceChange}
-                  value={kneeBrace}
+                  id='kneeBrace'
+                  name='kneeBrace'
+                  onChange={handleChange}
+                  checked={state.isKneeBrace}
+                  value='knee brace'
                 />
-                <label class='form-check-label' for='knee-brace'>
+                <label className='form-check-label' htmlFor='kneeBrace'>
                   Knee Brace
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Ankle Brace */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='ankle-brace'
-                  onChange={handleAnkleBraceChange}
-                  value={ankleBrace}
+                  id='ankleBrace'
+                  name='ankleBrace'
+                  onChange={handleChange}
+                  checked={state.isAnkleBrace}
+                  value='ankle brace'
                 />
-                <label class='form-check-label' for='ankle-brace'>
+                <label className='form-check-label' htmlFor='ankleBrace'>
                   Ankle Brace
                 </label>
               </div>
@@ -375,7 +478,7 @@ e.preventDefault()
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'>
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                 />
               </svg>{' '}
@@ -388,30 +491,34 @@ e.preventDefault()
         <div className='row mb-3'>
           <div className='col-2 text-right'>Diabetic Shoes</div>
           <div className='col-10'>
-            <div class='form-group form-check'>
-              <div class='form-check form-check-inline'>
+            <div className='form-group form-check'>
+              <div className='form-check form-check-inline'>
+                {/* Shoes */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='shoes'
                   name='shoes'
-                  onChange={handleShoesChange}
-                  value={shoes}
+                  onChange={handleChange}
+                  checked={state.isShoes}
+                  value='shoes'
                 />
-                <label class='form-check-label' for='shoes'>
+                <label className='form-check-label' htmlFor='shoes'>
                   Shoes
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Inserts */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='inserts'
                   name='inserts'
-                  onChange={handleInsertsChange}
-                  value={inserts}
+                  onChange={handleChange}
+                  checked={state.isInserts}
+                  value='inserts'
                 />
-                <label class='form-check-label' for='inserts'>
+                <label className='form-check-label' htmlFor='inserts'>
                   Inserts
                 </label>
               </div>
@@ -423,7 +530,7 @@ e.preventDefault()
                 fill='currentColor'
                 xmlns='http://www.w3.org/2000/svg'>
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                 />
               </svg>{' '}
@@ -436,69 +543,79 @@ e.preventDefault()
         <div className='row mb-3'>
           <div className='col-2 text-right'>Objectives</div>
           <div className='col-10'>
-            <div class='form-group form-check'>
-              <div class='form-check form-check-inline'>
+            <div className='form-group form-check'>
+              <div className='form-check form-check-inline'>
+                {/* Pain */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='pain'
                   name='pain'
-                  onChange={handlePainChange}
-                  value={pain}
+                  onChange={handleChange}
+                  checked={state.isPain}
+                  value='pain'
                 />
-                <label class='form-check-label' for='pain'>
+                <label className='form-check-label' htmlFor='pain'>
                   Pain
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Pressure */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='pressure'
                   name='pressure'
-                  onChange={handlePressureChange}
-                  value={pressure}
+                  onChange={handleChange}
+                  checked={state.isPressure}
+                  value='pressure'
                 />
-                <label class='form-check-label' for='pressure'>
+                <label className='form-check-label' htmlFor='pressure'>
                   Pressure
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Rubbing */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='rubbing'
                   name='rubbing'
-                  onChange={handleRubbingChange}
-                  value={rubbing}
+                  onChange={handleChange}
+                  checked={state.isRubbing}
+                  value='rubbing'
                 />
-                <label class='form-check-label' for='rubbing'>
+                <label className='form-check-label' htmlFor='rubbing'>
                   Rubbing
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Tightness */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='inlineCheckbox4'
+                  id='tightness'
                   name='tightness'
-                  onChange={handleTightnessChange}
-                  value={tightness}
+                  onChange={handleChange}
+                  checked={state.isTightness}
+                  value='tightness'
                 />
-                <label class='form-check-label' for='tightness'>
+                <label className='form-check-label' htmlFor='tightness'>
                   Tightness
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Looseness */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
                   id='looseness'
                   name='looseness'
-                  onChange={handleLoosenessChange}
-                  value={looseness}
+                  onChange={handleChange}
+                  checked={state.isLooseness}
+                  value='looseness'
                 />
-                <label class='form-check-label' for='looseness'>
+                <label className='form-check-label' htmlFor='looseness'>
                   Looseness
                 </label>
                 <svg
@@ -509,7 +626,7 @@ e.preventDefault()
                   fill='currentColor'
                   xmlns='http://www.w3.org/2000/svg'>
                   <path
-                    fill-rule='evenodd'
+                    fillRule='evenodd'
                     d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                   />
                 </svg>{' '}
@@ -523,69 +640,79 @@ e.preventDefault()
         <div className='row mb-3'>
           <div className='col-2 text-right'>Assessment</div>
           <div className='col-10'>
-            <div class='form-group form-check'>
-              <div class='form-check form-check-inline'>
+            <div className='form-group form-check'>
+              <div className='form-check form-check-inline'>
+                {/* Too Tall */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='too-tall'
-                  name='too-tall'
-                  onChange={handleTooTallChange}
-                  value={tooTall}
+                  id='tooTall'
+                  name='tooTall'
+                  onChange={handleChange}
+                  checked={state.isTooTall}
+                  value='too tall'
                 />
-                <label class='form-check-label' for='too-tall'>
+                <label className='form-check-label' htmlFor='tooTall'>
                   Too Tall
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Too Short */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='too-short'
-                  name='too-short'
-                  onChange={handleTooShortChange}
-                  value={tooShort}
+                  id='tooShort'
+                  name='tooShort'
+                  onChange={handleChange}
+                  checked={state.isTooShort}
+                  value='too short'
                 />
-                <label class='form-check-label' for='too-short'>
+                <label className='form-check-label' htmlFor='tooShort'>
                   Too Short
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Lateral Shifting */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='lateral-shifting'
-                  name='lateral-shifting'
-                  onChange={handleLateralShiftingChange}
-                  value={lateralShifting}
+                  id='lateralShifting'
+                  name='lateralShifting'
+                  onChange={handleChange}
+                  checked={state.isLateralShifting}
+                  value='lateral shifting'
                 />
-                <label class='form-check-label' for='lateral-shifting'>
+                <label className='form-check-label' htmlFor='lateralShifting'>
                   Lateral Shifting
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Medial Shifting */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='medial-shifting'
-                  name='medial-shifting'
-                  onChange={handleMedialShiftingChange}
-                  value={medialShifting}
+                  id='medialShifting'
+                  name='medialShifting'
+                  onChange={handleChange}
+                  checked={state.isMedialShifting}
+                  value='medial shifting'
                 />
-                <label class='form-check-label' for='medial-shifting'>
+                <label className='form-check-label' htmlFor='medialShifting'>
                   Medial Shifting
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* No Toe Clearance */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='no-toe-clearance'
-                  name='no-toe-clearance'
-                  onChange={handleNoToeClearanceChange}
-                  value={noToeClearance}
+                  id='noToeClearance'
+                  name='noToeClearance'
+                  onChange={handleChange}
+                  checked={state.isNoToeClearance}
+                  value='no toe clearance'
                 />
-                <label class='form-check-label' for='no-toe-clearance'>
+                <label className='form-check-label' htmlFor='noToeClearance'>
                   No Toe Clearance
                 </label>
                 <svg
@@ -596,7 +723,7 @@ e.preventDefault()
                   fill='currentColor'
                   xmlns='http://www.w3.org/2000/svg'>
                   <path
-                    fill-rule='evenodd'
+                    fillRule='evenodd'
                     d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                   />
                 </svg>{' '}
@@ -610,68 +737,79 @@ e.preventDefault()
         <div className='row mb-3'>
           <div className='col-2 text-right'>Plan</div>
           <div className='col-10'>
-            <div class='form-group form-check'>
-              <div class='form-check form-check-inline'>
+            <div className='form-group form-check'>
+              <div className='form-check form-check-inline'>
+                {/* Issue Resolved */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='issue-resolved'
-                  name='issue-resolved'
-                  onChange={handleIssueResolvedChange}
-                  value={issueResolved}
+                  id='issueResolved'
+                  name='issueResolved'
+                  onChange={handleChange}
+                  checked={state.isIssueResolved}
+                  value='issue resolved'
                 />
-                <label class='form-check-label' for='issue-resolved'>
+                <label className='form-check-label' htmlFor='issueResolved'>
                   Issue Resolved
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* One Week Follow-up */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='one-week-follow-up'
-                  name='one-week-follow-up'
-                  onChange={handleOneWeekChange}
-                  value={oneWeek}
+                  id='oneWeek'
+                  name='oneWeek'
+                  onChange={handleChange}
+                  checked={state.isOneWeek}
+                  value='one week'
                 />
-                <label class='form-check-label' for='one-week-follow-up'>
+                <label className='form-check-label' htmlFor='oneWeek'>
                   One Week Follow-up
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Limited Wear Time */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='limited-wear-time'
-                  name='limited-wear-time'
-                  onChange={handleLimitedWearChange}
-                  value={limitedWear}
+                  id='limitedWear'
+                  name='limitedWear'
+                  onChange={handleChange}
+                  checked={state.isLimitedWear}
+                  value='limited wear'
                 />
-                <label class='form-check-label' for='limited-wear-time'>
+                <label className='form-check-label' htmlFor='limitedWear'>
                   Limited Wear Time
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Unlimited Wear Time */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='unlimited-wear-time'
-                  onChange={handleUnlimitedWearChange}
-                  value={unlimitedWear}
+                  id='unlimitedWear'
+                  name='unlimitedWear'
+                  onChange={handleChange}
+                  checked={state.isUnlimitedWear}
+                  value='unlimited wear'
                 />
-                <label class='form-check-label' for='unlimited-wear-time'>
+                <label className='form-check-label' htmlFor='unlimitedWear'>
                   Unlimited Wear Time
                 </label>
               </div>
-              <div class='form-check form-check-inline'>
+              <div className='form-check form-check-inline'>
+                {/* Refer To Specialist */}
                 <input
-                  class='form-check-input'
+                  className='form-check-input'
                   type='checkbox'
-                  id='refer-to-specialist'
-                  name='refer-to-specialist'
-                  onChange={handleReferChange}
-                  value={refer}
+                  id='refer'
+                  name='refer'
+                  onChange={handleChange}
+                  checked={state.isRefer}
+                  value='refer'
                 />
-                <label class='form-check-label' for='refer-to-specialist'>
+                <label className='form-check-label' htmlFor='refer'>
                   Refer to Specialist
                 </label>
                 <svg
@@ -682,7 +820,7 @@ e.preventDefault()
                   fill='currentColor'
                   xmlns='http://www.w3.org/2000/svg'>
                   <path
-                    fill-rule='evenodd'
+                    fillRule='evenodd'
                     d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                   />
                 </svg>{' '}
@@ -696,13 +834,13 @@ e.preventDefault()
         <div className='row mb-3'>
           <div className='col-2 text-right'>Medical Notation</div>
           <div className='col-10'>
-            <div class='form-group'>
+            <div className='form-group'>
               <textarea
-                class='form-control'
-                id='medical_notation'
-                name='medical_notation'
-                onChange={handleMedicalNotationChange}
-                value={medicalNotation}
+                className='form-control'
+                id='medicalNotation'
+                name='medicalNotation'
+                onChange={handleChange}
+                value={state.medicalNotation}
                 rows='3'></textarea>
             </div>
           </div>
@@ -716,7 +854,12 @@ e.preventDefault()
               <button className='btn btn-primary mr-3' onClick={handleSubmit}>
                 Submit
               </button>
-              <input className='btn btn-primary' type='reset' value='Reset' />
+              <input
+                className='btn btn-primary'
+                type='reset'
+                value='Reset'
+                onClick={handleReset}
+              />
             </div>
           </div>
         </div>
