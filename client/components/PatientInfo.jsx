@@ -57,15 +57,40 @@ const PatientInfo = () => {
     isRefer: null,
   });
 
+  const [selected, setSelected] = useState({
+    isLeg: null,
+    isArm: null,
+    isPartialFoot: null,
+    isBackBrace: null,
+    isKneeBrace: null,
+    isAnkleBrace: null,
+    isShoes: null,
+    isInserts: null,
+    isPain: null,
+    isPressure: null,
+    isRubbing: null,
+    isTightness: null,
+    isLooseness: null,
+    isTooTall: null,
+    isTooShort: null,
+    isLateralShifting: null,
+    isMedialShifting: null,
+    isNoToeClearance: null,
+    isIssueResolved: null,
+    isOneWeek: null,
+    isLimitedWear: null,
+    isUnlimitedWear: null,
+    isRefer: null,
+  });
+
   // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
   const isChecked = (event, currentCheckbox) => {
-
     // Toggle checkbox state
-    const toggle = `!state.${currentCheckbox}`;
+    const toggle = `!selected.${currentCheckbox}`;
 
-    // setState of currentCheckbox to true or false
-    setState({
-      ...state,
+    // setSelected of currentCheckbox to true or false
+    setSelected({
+      ...selected,
       [currentCheckbox]: [toggle],
     });
 
@@ -109,7 +134,7 @@ const PatientInfo = () => {
     ['unlimitedWear', 'isUnlimitedWear'],
     ['refer', 'isRefer'],
   ];
-  
+
   // handleCheckbox = Checks for event changes in checkbox and updates state
   const handleCheckbox = (event) => {
     for (let [checkbox, isBoxChecked] of checkboxes) {
@@ -129,18 +154,20 @@ const PatientInfo = () => {
   };
 
   // handleSubmit = Post form data to backend
-  const handleSubmit = (event) => {
-    // event.preventDefault();
-    // FIXME: Waiting on Route Info from Backend
-    // let res = await fetch("/api/", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    // TODO: Find out if we can spread state here ie. ...state instead of listing all of the pieces of state
-    //       body: JSON.stringify({ name, phone, dateOfBirth, email, leg, arm, partialFoot, backBrace,kneeBrace, ankleBrace, shoes, inserts, pain, pressure, rubbing, tightness, looseness, tooTall, tooShort, lateralShifting, medialShifting, noToeClearance, issueResolved, oneWeek, limitedWear, unlimitedWear, refer, medicalNotation }),
-    //     });
-  };
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //       let res = await fetch('/api/contact', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(state),
+  //       });
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  // };
 
   const handleReset = () => {
     setState({

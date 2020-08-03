@@ -1,6 +1,39 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 const Home = () => {
+  const [state, setState] = useState({
+    email: '',
+    subject: '',
+    message: '',
+  })
+  
+  // TODO: Create error state and success state
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setState({
+      ...state,
+      [event.target.name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      let res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(state),
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  console.log(state)
+
   return (
     <Fragment>
       <div className='jumbotron row jumbo-desktop'>
@@ -10,9 +43,7 @@ const Home = () => {
             <br />
             Do More
           </h3>
-          <p className='cta-text'>
-            
-          </p>
+          <p className='cta-text'></p>
           <button className='btn cta-button'> See video</button>
         </div>
         <div className='col-8'>
@@ -25,23 +56,20 @@ const Home = () => {
       </div>
 
       <div className='jumbotron row jumbo-mobile'>
-        <div className='col-4'>
+        <div className='col-12'>
           <img
             className='img-fluid'
-            src='/assets/am-jumbotron.png'
+            src='/assets/am-jumbotron_v2.png'
             alt='Applied Movement'
           />
         </div>
-        <div className='col-8'>
+        <div className='col-12'>
           <h3 className='cta-heading mt-5'>
             Type Less
             <br />
             Do More
           </h3>
-          <p className='cta-text'>
-            {' '}
-        
-          </p>
+          <p className='cta-text'> </p>
           <button className='btn cta-button'> See video</button>
         </div>
       </div>
@@ -185,12 +213,20 @@ const Home = () => {
               type='email'
               className='form-control'
               id='email'
-              placeholder='name@example.com'
+              name='email'
+              value={state.email}
+              onChange={handleChange}
             />
           </div>
           <div className='form-group'>
             <label htmlFor='subject'>Subject</label>
-            <select className='form-control' id='subject'>
+            <select
+              className='form-control'
+              id='subject'
+              name='subject'
+              value={state.subject}
+              onChange={handleChange}>
+              <option selected>Select Subject</option>
               <option>Technical</option>
               <option>Comment</option>
               <option>Interested</option>
@@ -199,9 +235,15 @@ const Home = () => {
           </div>
           <div className='form-group'>
             <label htmlFor='message'>Message</label>
-            <textarea className='form-control' id='message' rows='3'></textarea>
+            <textarea
+              className='form-control'
+              id='message'
+              rows='3'
+              name='message'
+              value={state.message}
+              onChange={handleChange}></textarea>
           </div>
-          <button className='btn submit-button'>Submit</button>
+          <button className='btn submit-button' onChange={handleSubmit}>Submit</button>
         </form>
       </div>
     </Fragment>
