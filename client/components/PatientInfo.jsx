@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-
 const PatientInfo = () => {
   // Setup state for all form elements, toggles
   const [state, setState] = useState({
@@ -60,10 +59,6 @@ const PatientInfo = () => {
 
   // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
   const isChecked = (event, currentCheckbox) => {
-    // console.log(event.target);
-    // console.log(event.target.name);
-    // console.log(event.target.value);
-    // console.log(event.target.checked);
 
     // Toggle checkbox state
     const toggle = `!state.${currentCheckbox}`;
@@ -88,8 +83,9 @@ const PatientInfo = () => {
     }
   };
 
-  // handleCheckbox with forOf loop instead of current approach in handleChange
+  // handleCheckbox with for of loop
   const checkboxes = [
+    ['leg', 'isLeg'],
     ['arm', 'isArm'],
     ['partialFoot', 'isPartialFoot'],
     ['backBrace', 'isBackBrace'],
@@ -113,159 +109,28 @@ const PatientInfo = () => {
     ['unlimitedWear', 'isUnlimitedWear'],
     ['refer', 'isRefer'],
   ];
-  // handleCheckbox fields
-  // const handleCheckbox = (event) => {
-  //     if (event.target.type === 'checkbox' && event.target.name === 'leg') {
-  //       isChecked(event, 'isLeg');
-  //     }
-  // FIXME: I want the for of loop here so that I can loop over the necessary else if statements
-    for (const [checkbox, isChecked] of checkboxes) {
-  console.log(`else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === '${checkbox}'
-    ) {
-      isChecked(event, '${isChecked});
-    }`
-  )
-  }
-    // }
-
-  // handleChange = Checks for event changes in input, checkbox and textArea fields and updates state
-  const handleChange = (event) => {
-    if (event.target.type === 'checkbox' && event.target.name === 'leg') {
-      isChecked(event, 'isLeg');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'arm'
-    ) {
-      isChecked(event, 'isArm');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'partialFoot'
-    ) {
-      isChecked(event, 'isPartialFoot');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'backBrace'
-    ) {
-      isChecked(event, 'isBackBrace');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'kneeBrace'
-    ) {
-      isChecked(event, 'isKneeBrace');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'ankleBrace'
-    ) {
-      isChecked(event, 'isAnkleBrace');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'shoes'
-    ) {
-      isChecked(event, 'isShoes');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'inserts'
-    ) {
-      isChecked(event, 'isInserts');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'pain'
-    ) {
-      isChecked(event, 'isPain');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'Pressure'
-    ) {
-      isChecked(event, 'isPressure');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'rubbing'
-    ) {
-      isChecked(event, 'isRubbing');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'tightness'
-    ) {
-      isChecked(event, 'isTightness');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'looseness'
-    ) {
-      isChecked(event, 'isLooseness');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'tooTall'
-    ) {
-      isChecked(event, 'tooTall');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'tooShort'
-    ) {
-      isChecked(event, 'isTooShort');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'lateralShifting'
-    ) {
-      isChecked(event, 'isLateralShifting');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'medialShifting'
-    ) {
-      isChecked(event, 'isMedialShifting');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'noToeClearance'
-    ) {
-      isChecked(event, 'isNoToeClearance');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'issueResolved'
-    ) {
-      isChecked(event, 'isIssueResolved');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'oneWeek'
-    ) {
-      isChecked(event, 'isOneWeek');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'limitedWear'
-    ) {
-      isChecked(event, 'isLimitedWear');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'unlimitedWear'
-    ) {
-      isChecked(event, 'isUnlimitedWear');
-    } else if (
-      event.target.type === 'checkbox' &&
-      event.target.name === 'refer'
-    ) {
-      isChecked(event, 'isRefer');
-    } else {
-      const value = event.target.value;
-      setState({
-        ...state,
-        [event.target.name]: value,
-      });
+  
+  // handleCheckbox = Checks for event changes in checkbox and updates state
+  const handleCheckbox = (event) => {
+    for (let [checkbox, isBoxChecked] of checkboxes) {
+      if (event.target.type === 'checkbox' && event.target.name === checkbox) {
+        isChecked(event, isBoxChecked);
+      }
     }
   };
 
   // handleInput fields
-  // const handleInput = (event) => {
-  //       const value = event.target.value;
-  //       setState({
-  //         ...state,
-  //         [event.target.name]: value,
-  //       });
-  //     }
+  const handleInput = (event) => {
+    const value = event.target.value;
+    setState({
+      ...state,
+      [event.target.name]: value,
+    });
+  };
 
   // handleSubmit = Post form data to backend
   const handleSubmit = (event) => {
     // event.preventDefault();
-
     // FIXME: Waiting on Route Info from Backend
     // let res = await fetch("/api/", {
     //       method: "POST",
@@ -316,10 +181,12 @@ const PatientInfo = () => {
 
   return (
     <Fragment>
-    <div id='top'></div>
+      <div id='top'></div>
       <div className='jumbotron row mb-4'>
         <div className='col'>
-          <h3 className='cta-heading'>Welcome <br /> Dr. Shahid</h3>
+          <h3 className='cta-heading'>
+            Welcome <br /> Dr. Shahid
+          </h3>
         </div>
         {/* Image Data */}
         <div className='col'>
@@ -347,7 +214,7 @@ const PatientInfo = () => {
               className='form-control'
               name='name'
               value={state.name}
-              onChange={handleChange}
+              onChange={handleInput}
             />
           </div>
         </div>
@@ -359,7 +226,7 @@ const PatientInfo = () => {
               type='text'
               className='form-control'
               name='phone'
-              onChange={handleChange}
+              onChange={handleInput}
               value={state.phone}
             />
           </div>
@@ -372,7 +239,7 @@ const PatientInfo = () => {
               type='text'
               className='form-control'
               name='dateOfBirth'
-              onChange={handleChange}
+              onChange={handleInput}
               value={state.dateOfBirth}
             />
           </div>
@@ -385,7 +252,7 @@ const PatientInfo = () => {
               type='email'
               className='form-control'
               name='email'
-              onChange={handleChange}
+              onChange={handleInput}
               value={state.email}
             />
           </div>
@@ -417,7 +284,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='leg'
                   name='leg'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   value='leg'
                   checked={state.isLeg}
                 />
@@ -432,7 +299,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='arm'
                   name='arm'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   value='arm'
                   checked={state.isArm}
                 />
@@ -447,7 +314,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='partialFoot'
                   name='partialFoot'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   value='partial foot'
                   checked={state.isPartialFoot}
                 />
@@ -484,7 +351,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='backBrace'
                   name='backBrace'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isBackBrace}
                   value='back brace'
                 />
@@ -499,7 +366,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='kneeBrace'
                   name='kneeBrace'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isKneeBrace}
                   value='knee brace'
                 />
@@ -514,7 +381,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='ankleBrace'
                   name='ankleBrace'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isAnkleBrace}
                   value='ankle brace'
                 />
@@ -551,7 +418,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='shoes'
                   name='shoes'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isShoes}
                   value='shoes'
                 />
@@ -566,7 +433,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='inserts'
                   name='inserts'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isInserts}
                   value='inserts'
                 />
@@ -603,7 +470,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='pain'
                   name='pain'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isPain}
                   value='pain'
                 />
@@ -618,7 +485,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='pressure'
                   name='pressure'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isPressure}
                   value='pressure'
                 />
@@ -633,7 +500,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='rubbing'
                   name='rubbing'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isRubbing}
                   value='rubbing'
                 />
@@ -648,7 +515,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='tightness'
                   name='tightness'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isTightness}
                   value='tightness'
                 />
@@ -663,7 +530,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='looseness'
                   name='looseness'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isLooseness}
                   value='looseness'
                 />
@@ -700,7 +567,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='tooTall'
                   name='tooTall'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isTooTall}
                   value='too tall'
                 />
@@ -715,7 +582,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='tooShort'
                   name='tooShort'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isTooShort}
                   value='too short'
                 />
@@ -730,7 +597,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='lateralShifting'
                   name='lateralShifting'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isLateralShifting}
                   value='lateral shifting'
                 />
@@ -745,7 +612,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='medialShifting'
                   name='medialShifting'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isMedialShifting}
                   value='medial shifting'
                 />
@@ -760,7 +627,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='noToeClearance'
                   name='noToeClearance'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isNoToeClearance}
                   value='no toe clearance'
                 />
@@ -797,7 +664,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='issueResolved'
                   name='issueResolved'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isIssueResolved}
                   value='issue resolved'
                 />
@@ -812,7 +679,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='oneWeek'
                   name='oneWeek'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isOneWeek}
                   value='one week'
                 />
@@ -827,7 +694,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='limitedWear'
                   name='limitedWear'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isLimitedWear}
                   value='limited wear'
                 />
@@ -842,7 +709,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='unlimitedWear'
                   name='unlimitedWear'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isUnlimitedWear}
                   value='unlimited wear'
                 />
@@ -857,7 +724,7 @@ const PatientInfo = () => {
                   type='checkbox'
                   id='refer'
                   name='refer'
-                  onChange={handleChange}
+                  onChange={handleCheckbox}
                   checked={state.isRefer}
                   value='refer'
                 />
@@ -891,7 +758,7 @@ const PatientInfo = () => {
                 className='form-control'
                 id='medicalNotation'
                 name='medicalNotation'
-                onChange={handleChange}
+                onChange={handleInput}
                 value={state.medicalNotation}
                 rows='3'></textarea>
             </div>
