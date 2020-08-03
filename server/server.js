@@ -1,16 +1,26 @@
-import * as path from 'path';
-import * as express from 'express';
-import apiRouter from './routes';
+const express = require('express');
+const path = require('path');
+
+const jwt = require('jsonwebtoken');
 
 const app = express();
+const PORT = 3000;
 
-let publicPath = path.join(__dirname, '../public');
+let publicPath = path.resolve(__dirname,'..')+'/Public';
 console.log(publicPath);
 
 app.use(express.static(publicPath));
-app.use(apiRouter);
+app.use(express.json())
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server listening on port: ${port}`);
-});
+
+// api
+
+app.use('/api',require('./routes/api'));
+
+app.get('/', (req,res)=>{
+    res.sendFile('index.html')
+})
+
+app.listen(PORT, ()=> {
+    console.log('app running at http://localhost:'+PORT);
+})
