@@ -97,8 +97,9 @@ const Admin = () => {
   };
 
   const fetchApi = async () => {
-    let res = await fetch(`/api/${id}`);
-    let record = await res.json();
+    // let res = await fetch(`/api/${id}`);
+    // let record = await res.json();
+    
     console.log(record);
     setState(record);
   };

@@ -7,13 +7,14 @@ const Nav = () => {
  
   return (
     <div className='nav sticky-top nav-pills justify-content-between mb-5'>
-      <div>
+      <div className='brand-logo'>
         <Link to='/' className='link nav-brand'>
           <img
-            src='/assets/am-logo.png'
-            width='50'
-            height='50'
+            src='/assets/am-logo_v2.png'
+            width='75'
+            height='75'
             alt='Applied Movement logo'
+            className='slide-out-blurred-right'
           />
           <span
             id='logo-text-applied'
@@ -30,7 +31,7 @@ const Nav = () => {
       <ul className='nav nav-pills'>
         <li className='nav-item'>
           <a href='/#features' className='link nav-link'>
-            Product Features
+            Features
           </a>
         </li>
         <li className='nav-item'>

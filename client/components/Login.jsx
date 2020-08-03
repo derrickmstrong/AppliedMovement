@@ -20,7 +20,7 @@ function Login() {
       <Button variant='logo1' onClick={handleShow}>
         Login
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal className='mt-5' show={show} onHide={handleClose}>
         <form>
           <Modal.Header closeButton>
             <Modal.Title>Login</Modal.Title>

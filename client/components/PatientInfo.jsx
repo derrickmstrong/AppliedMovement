@@ -319,9 +319,7 @@ const PatientInfo = () => {
     <div id='top'></div>
       <div className='jumbotron row mb-4'>
         <div className='col'>
-          <h3 className='cta-heading'>Type Less, Do More</h3>
-          <p className='cta-text'> Text here</p>
-          <button className='btn cta-button'> See video</button>
+          <h3 className='cta-heading'>Welcome <br /> Dr. Shahid</h3>
         </div>
         {/* Image Data */}
         <div className='col'>
