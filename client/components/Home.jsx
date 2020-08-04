@@ -6,7 +6,7 @@ const Home = () => {
     subject: '',
     message: '',
   })
-  
+
   // TODO: Create error state and success state
 
   const handleChange = (event) => {
@@ -226,7 +226,7 @@ const Home = () => {
               name='subject'
               value={state.subject}
               onChange={handleChange}>
-              <option selected>Select Subject</option>
+              <option defaultValue>Select Subject</option>
               <option>Technical</option>
               <option>Comment</option>
               <option>Interested</option>

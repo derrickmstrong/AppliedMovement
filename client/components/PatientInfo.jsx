@@ -32,29 +32,6 @@ const PatientInfo = () => {
     unlimitedWear: '',
     refer: '',
     medicalNotation: '',
-    isLeg: null,
-    isArm: null,
-    isPartialFoot: null,
-    isBackBrace: null,
-    isKneeBrace: null,
-    isAnkleBrace: null,
-    isShoes: null,
-    isInserts: null,
-    isPain: null,
-    isPressure: null,
-    isRubbing: null,
-    isTightness: null,
-    isLooseness: null,
-    isTooTall: null,
-    isTooShort: null,
-    isLateralShifting: null,
-    isMedialShifting: null,
-    isNoToeClearance: null,
-    isIssueResolved: null,
-    isOneWeek: null,
-    isLimitedWear: null,
-    isUnlimitedWear: null,
-    isRefer: null,
   });
 
   const [selected, setSelected] = useState({
@@ -154,8 +131,8 @@ const PatientInfo = () => {
   };
 
   // handleSubmit = Post form data to backend
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
+   const handleSubmit = async (event) => {
+  //  event.preventDefault();
   //   try {
   //       let res = await fetch('/api/contact', {
   //         method: 'POST',
@@ -167,7 +144,7 @@ const PatientInfo = () => {
   //     } catch (error) {
   //       console.log(error)
   //     }
-  // };
+  };
 
   const handleReset = () => {
     setState({
@@ -801,7 +778,8 @@ const PatientInfo = () => {
               <Link to='/results'>
                 <button
                   className='btn submit-button mr-3'
-                  onClick={handleSubmit}>
+                  onClick={handleSubmit}
+                 >
                   Submit
                 </button>
               </Link>

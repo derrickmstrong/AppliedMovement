@@ -39,41 +39,13 @@ const Admin = () => {
 
   const editRecord = async (e) => {
     e.preventDefault();
+    // TODO: UPDATE FETCH URL
     let res = await fetch(`/api/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name,
-        phone,
-        dateOfBirth,
-        email,
-        leg,
-        arm,
-        partialFoot,
-        backBrace,
-        kneeBrace,
-        ankleBrace,
-        shoes,
-        inserts,
-        pain,
-        pressure,
-        rubbing,
-        tightness,
-        looseness,
-        tooTall,
-        tooShort,
-        lateralShifting,
-        medialShifting,
-        noToeClearance,
-        issueResolved,
-        oneWeek,
-        limitedWear,
-        unlimitedWear,
-        refer,
-        medicalNotation,
-      }),
+      body: JSON.stringify(state),
     });
 
     if (res.ok) {
@@ -85,6 +57,7 @@ const Admin = () => {
 
   const deleteRecord = async (e) => {
     e.preventDefault();
+    // TODO: UPDATE FETCH URL
     let res = await fetch(`/api/${id}`, {
       method: 'DELETE',
     });
@@ -97,9 +70,9 @@ const Admin = () => {
   };
 
   const fetchApi = async () => {
+    // TODO: UPDATE FETCH URL
     // let res = await fetch(`/api/${id}`);
     // let record = await res.json();
-    
     console.log(record);
     setState(record);
   };

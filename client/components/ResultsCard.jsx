@@ -5,7 +5,7 @@ const ResultsCard = (props) => {
   const history = useHistory();
 
   return (
-    <div className='col-md-6 mx-1'>
+    <div className='col-md-12'>
       <div
         onClick={() => history.push(`/details/${props.record.id}`)}
         className='card my-2 shadow'>
