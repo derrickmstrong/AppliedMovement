@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import ResultsCard from './ResultsCard.jsx';
+import Details from '../views/Details.jsx'
 
 const Results = () => {
   const [records, setRecords] = useState([]);
@@ -70,16 +71,7 @@ const Results = () => {
           </div>
         </div>
         <div className='col'>
-          <h3>Detail Record</h3>
-          <p>Detailed patient info here</p>
-          <Link to='/admin' className='link'>
-            <input
-              className='btn submit-button mr-3'
-              type='reset'
-              value='Edit'
-            />
-            <input className='btn submit-button' type='reset' value='Delete' />
-          </Link>
+          <Details />
         </div>
       </div>
     </Fragment>

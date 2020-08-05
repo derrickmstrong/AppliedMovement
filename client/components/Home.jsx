@@ -1,6 +1,8 @@
 import React, { useState, Fragment } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
+  const history = useHistory()
   const [state, setState] = useState({
     email: '',
     subject: '',
@@ -27,6 +29,11 @@ const Home = () => {
         },
         body: JSON.stringify(state),
       });
+      if (res.ok) {
+        history.push('/');
+      } else {
+        console.log('Something went wrong');
+      }
     } catch (error) {
       console.log(error)
     }
@@ -145,7 +152,7 @@ const Home = () => {
         <div className='col mb-4'>
           <div className='card'>
             <div className='card-body'>
-              <h5 className='card-title'>Better Patient Tracking</h5>
+              <h5 className='card-title'>Reliable Patient Tracking</h5>
               <p className='card-text'>
                 This feature allows for more secure and concise data collection
                 for your patients.
@@ -156,9 +163,7 @@ const Home = () => {
         <div className='col mb-4'>
           <div className='card'>
             <div className='card-body'>
-              <h5 className='card-title'>
-                Reliable Office-wide Communications
-              </h5>
+              <h5 className='card-title'>Better Communications</h5>
               <p className='card-text'>
                 This app will all you to streamline the discussions regarding
                 patient needs in order to devote this time to patient care.
@@ -180,9 +185,7 @@ const Home = () => {
         <div className='col mb-4'>
           <div className='card'>
             <div className='card-body'>
-              <h5 className='card-title'>
-                Fewer Administrative Typographical Errors
-              </h5>
+              <h5 className='card-title'>Fewer Administrative Errors</h5>
               <p className='card-text'>
                 By automating many parts of the data collected on patients, this
                 lessens the chance for human error to interrupt the patient's
@@ -243,7 +246,9 @@ const Home = () => {
               value={state.message}
               onChange={handleChange}></textarea>
           </div>
-          <button className='btn submit-button' onChange={handleSubmit}>Submit</button>
+          <button className='btn submit-button' onChange={handleSubmit}>
+            Submit
+          </button>
         </form>
       </div>
     </Fragment>
