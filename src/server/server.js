@@ -2,7 +2,7 @@ import * as express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 import * as path from "path";
-import apiRouter from "./src/server/routes/index.js"
+import apiRouter from "./routes/index"
 const dotenv = require('dotenv').config({ path: './config/config.env' });
 
 const app = express();

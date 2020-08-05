@@ -26,7 +26,7 @@ let serverConfig = {
 
 let clientConfig = {
   mode: process.env.NODE_ENV || 'development',
-  entry: './client/index.jsx',
+  entry: './src/client/index.jsx',
   output: {
     path: path.join(__dirname, './public/js/'),
     filename: 'app.js',

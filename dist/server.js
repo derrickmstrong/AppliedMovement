@@ -86,6 +86,30 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/server/routes/index.js":
+/*!************************************!*\
+  !*** ./src/server/routes/index.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test */ \"./src/server/routes/test.js\");\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"]();\nrouter.use(\"/test\", _test__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./src/server/routes/index.js?");
+
+/***/ }),
+
+/***/ "./src/server/routes/test.js":
+/*!***********************************!*\
+  !*** ./src/server/routes/test.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"]();\nrouter.use(\"/\", (req, res, next) => {\n  res.send(\"testing route\");\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./src/server/routes/test.js?");
+
+/***/ }),
+
 /***/ "./src/server/server.js":
 /*!******************************!*\
   !*** ./src/server/server.js ***!
@@ -94,7 +118,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bcrypt */ \"bcrypt\");\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bcrypt__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ \"jsonwebtoken\");\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);\n!(function webpackMissingModule() { var e = new Error(\"Cannot find module './src/server/routes/index.js'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }());\n\n\n\n\n\n\nconst dotenv = __webpack_require__(/*! dotenv */ \"dotenv\").config({\n  path: './config/config.env'\n});\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0__();\nconst PORT = 3000;\nlet publicPath = path__WEBPACK_IMPORTED_MODULE_3__[\"resolve\"](__dirname, '..') + '/Public';\nconsole.log(publicPath);\napp.use(express__WEBPACK_IMPORTED_MODULE_0__[\"static\"](publicPath));\napp.use(express__WEBPACK_IMPORTED_MODULE_0__[\"json\"]()); // api\n\napp.use('/api', !(function webpackMissingModule() { var e = new Error(\"Cannot find module './src/server/routes/index.js'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\napp.get('/', (req, res) => {\n  res.sendFile('index.html');\n});\napp.listen(PORT, () => {\n  console.log('app running at http://localhost:' + PORT);\n});\n\n//# sourceURL=webpack:///./src/server/server.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bcrypt */ \"bcrypt\");\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bcrypt__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ \"jsonwebtoken\");\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/index */ \"./src/server/routes/index.js\");\n\n\n\n\n\n\nconst dotenv = __webpack_require__(/*! dotenv */ \"dotenv\").config({\n  path: './config/config.env'\n});\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0__();\nconst PORT = 3000;\nlet publicPath = path__WEBPACK_IMPORTED_MODULE_3__[\"resolve\"](__dirname, '..') + '/Public';\nconsole.log(publicPath);\napp.use(express__WEBPACK_IMPORTED_MODULE_0__[\"static\"](publicPath));\napp.use(express__WEBPACK_IMPORTED_MODULE_0__[\"json\"]()); // api\n\napp.use('/api', _routes_index__WEBPACK_IMPORTED_MODULE_4__[\"default\"]);\napp.get('/', (req, res) => {\n  res.sendFile('index.html');\n});\napp.listen(PORT, () => {\n  console.log('app running at http://localhost:' + PORT);\n});\n\n//# sourceURL=webpack:///./src/server/server.js?");
 
 /***/ }),
 
