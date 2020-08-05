@@ -81,54 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./server/server.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/server/server.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./server/routes.js":
-/*!**************************!*\
-  !*** ./server/routes.js ***!
-  \**************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"]();\nrouter.get('/api', (req, res, next) => {\n  res.json('Hafeeza Shahid');\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./server/routes.js?");
-
-/***/ }),
-
-/***/ "./server/server.js":
-/*!**************************!*\
-  !*** ./server/server.js ***!
-  \**************************/
+/***/ "./src/server/server.js":
+/*!******************************!*\
+  !*** ./src/server/server.js ***!
+  \******************************/
 /*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ \"./server/routes.js\");\n\n\n\nconst app = express__WEBPACK_IMPORTED_MODULE_1__();\nlet publicPath = path__WEBPACK_IMPORTED_MODULE_0__[\"join\"](__dirname, '../public');\nconsole.log(publicPath);\napp.use(express__WEBPACK_IMPORTED_MODULE_1__[\"static\"](publicPath));\napp.use(_routes__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\nconst port = process.env.PORT || 3000;\napp.listen(port, () => {\n  console.log(`Server listening on port: ${port}`);\n});\n\n//# sourceURL=webpack:///./server/server.js?");
-
-/***/ }),
-
-/***/ "express":
-/*!**************************!*\
-  !*** external "express" ***!
-  \**************************/
-/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
-
-/***/ }),
-
-/***/ "path":
-/*!***********************!*\
-  !*** external "path" ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\package.json: Error while parsing JSON - Unexpected token < in JSON at position 840\\n    at JSON.parse (<anonymous>)\\n    at C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\files\\\\package.js:57:20\\n    at C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\files\\\\utils.js:37:12\\n    at Generator.next (<anonymous>)\\n    at Function.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:26:3)\\n    at Generator.next (<anonymous>)\\n    at evaluateSync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:244:28)\\n    at Function.sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:84:14)\\n    at sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:66:25)\\n    at sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:177:19)\\n    at onFirstPause (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:204:19)\\n    at Generator.next (<anonymous>)\\n    at cachedFunction (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\caching.js:68:46)\\n    at cachedFunction.next (<anonymous>)\\n    at findPackageData (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\files\\\\package.js:33:18)\\n    at findPackageData.next (<anonymous>)\\n    at buildRootChain (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\config-chain.js:105:92)\\n    at buildRootChain.next (<anonymous>)\\n    at loadPrivatePartialConfig (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\partial.js:95:62)\\n    at loadPrivatePartialConfig.next (<anonymous>)\\n    at Function.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\partial.js:120:25)\\n    at Generator.next (<anonymous>)\\n    at evaluateSync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:244:28)\\n    at Function.sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:84:14)\\n    at Object.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\index.js:41:61)\\n    at Object.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:151:26)\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:3:103)\\n    at _next (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:5:194)\\n    at C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:5:364\");\n\n//# sourceURL=webpack:///./src/server/server.js?");
 
 /***/ })
 
