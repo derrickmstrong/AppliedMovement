@@ -1,10 +1,9 @@
 const mysql = require('mysql2');
 
-
 const connection = mysql.createConnection({
     host:'localhost',
     user:'root',
-    database: 'applied_movement'
+    database: 'patientportal'
 });
 
 const orm = {
@@ -34,4 +33,10 @@ const orm = {
 }
 // SELECT * FROM x WHERE column1 = "sam" AND solumn2 = "free"
 // UPDATE x SET column1 = "sam" , solumn2 = "free" WHERE column3 = "some"
-module.exports = {orm, connection}
+module.exports = {
+    orm: orm,
+    connection: connection
+}
+//export default {
+ //   orm.get
+//}

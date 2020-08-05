@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
@@ -49,4 +47,3 @@ const App = () => {
 };
 
 export default App;   
->>>>>>> 43e9710fe1ff87bf9dca19f3599b0cc56db6e78c

@@ -1,7 +1,8 @@
-const router = require("express").Router();
-const {orm} = require("../db/connection");
-const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
+import * as express from "express";
+import * as db from "../db/connection";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+const router = express.Router();
 
 const secret = "aser7874"
 
@@ -54,10 +55,15 @@ router.get('/secret', auth, (req, res)=>{
     res.json(req.user)
 })
 
+// router.get('/contact', async (req, res) => {
+//     let message =  req.body
+// })
+
 function auth(req, res, next){
     const auth = req.headers.authorization;
     if(auth){
         token = auth.substring("Baerer ".length);
+        console.log(token)
         jwt.verify(token, secret, (err, user)=>{
             if(err){
                 res.status(401).end()
@@ -73,5 +79,18 @@ function auth(req, res, next){
     next()
 }
 
+//  //using Twilio SendGrid's v3 Node.js Library
+//  //https://github.com/sendgrid/sendgrid-nodejs
+//  const sgMail = require('@sendgrid/mail');
+//  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//  const msg = {
+//    to: 'errondial@gmail.com',
+//    from: 'test@example.com',
+//    subject: 'Sending with Twilio SendGrid is Fun',
+//    text: 'and easy to do anywhere, even with Node.js',
+//    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+//  };
+//  sgMail.send(msg);
 
-module.exports = router;
+
+export default router
