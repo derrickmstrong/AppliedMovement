@@ -1,6 +1,6 @@
-create database if not exists "applied_movement";
+create database if not exists "PatientPortal";
 
-use applied_movement;
+use patientportal;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,

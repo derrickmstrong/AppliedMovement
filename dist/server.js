@@ -86,14 +86,129 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/server/db/index.js":
+/*!********************************!*\
+  !*** ./src/server/db/index.js ***!
+  \********************************/
+/*! exports provided: Query, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Query\", function() { return Query; });\n/* harmony import */ var mysql__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mysql */ \"mysql\");\n/* harmony import */ var mysql__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mysql__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _queries_queries__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./queries/queries */ \"./src/server/db/queries/queries.js\");\n\nconst pool = mysql__WEBPACK_IMPORTED_MODULE_0__[\"createPool\"]({\n  host: \"localhost\",\n  user: \"root\",\n  database: \"patientportal\",\n  password: \"4894608Ejd!\",\n  connectionLimit: 10\n});\nconst Query = (query, values) => {\n  const sql = mysql__WEBPACK_IMPORTED_MODULE_0__[\"format\"](query, values);\n  return new Promise((resolve, reject) => {\n    pool.query(sql, (err, results) => {\n      if (err) {\n        reject(err);\n      } else {\n        resolve(results);\n      }\n    });\n  });\n};\n //import users from './queries/users';\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  queries: _queries_queries__WEBPACK_IMPORTED_MODULE_1__[\"default\"] //users\n\n});\n\n//# sourceURL=webpack:///./src/server/db/index.js?");
+
+/***/ }),
+
+/***/ "./src/server/db/queries/queries.js":
+/*!******************************************!*\
+  !*** ./src/server/db/queries/queries.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var ___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ */ \"./src/server/db/index.js\");\n\n\nconst all = () => Object(___WEBPACK_IMPORTED_MODULE_0__[\"Query\"])(`\n    SELECT\n        chirps.*,\n        users.name\n    FROM chirps\n    JOIN users ON users.id = chirps.userid\n    ORDER BY chirps.id DESC\n`);\n\nconst one = id => Object(___WEBPACK_IMPORTED_MODULE_0__[\"Query\"])(`\n    SELECT\n        chirps.*,\n        users.name\n    FROM chirps\n    JOIN users ON users.id = chirps.userid\n    WHERE chirps.id = ?\n`, [id]);\n\nconst insert = (userid, content) => Object(___WEBPACK_IMPORTED_MODULE_0__[\"Query\"])(`INSERT INTO chirps (userid, content) VALUE (?)`, [[userid, content]]);\n\nconst update = (id, content) => Object(___WEBPACK_IMPORTED_MODULE_0__[\"Query\"])(`UPDATE chirps SET content = ? WHERE id = ?`, [content, id]);\n\nconst destroy = id => Object(___WEBPACK_IMPORTED_MODULE_0__[\"Query\"])(`DELETE FROM patientinfo WHERE id = ?`, [id]);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  all,\n  one,\n  insert,\n  update,\n  destroy\n});\n\n//# sourceURL=webpack:///./src/server/db/queries/queries.js?");
+
+/***/ }),
+
+/***/ "./src/server/routes/index.js":
+/*!************************************!*\
+  !*** ./src/server/routes/index.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test */ \"./src/server/routes/test.js\");\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"]();\nrouter.use(\"/test\", _test__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./src/server/routes/index.js?");
+
+/***/ }),
+
+/***/ "./src/server/routes/test.js":
+/*!***********************************!*\
+  !*** ./src/server/routes/test.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _db__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../db */ \"./src/server/db/index.js\");\n\n\nconst router = express__WEBPACK_IMPORTED_MODULE_0__[\"Router\"]();\nrouter.get(\"/\", (req, res, next) => {\n  res.send(\"testing route\");\n});\nrouter.delete(\"/:id\", async (req, res, next) => {\n  const id = Number(req.params.id);\n  let response = _db__WEBPACK_IMPORTED_MODULE_1__[\"default\"].queries.destroy(id);\n  res.send({\n    msg: \"destroyed\"\n  });\n});\n/* harmony default export */ __webpack_exports__[\"default\"] = (router);\n\n//# sourceURL=webpack:///./src/server/routes/test.js?");
+
+/***/ }),
+
 /***/ "./src/server/server.js":
 /*!******************************!*\
   !*** ./src/server/server.js ***!
   \******************************/
 /*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ \"express\");\n/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bcrypt */ \"bcrypt\");\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bcrypt__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jsonwebtoken */ \"jsonwebtoken\");\n/* harmony import */ var jsonwebtoken__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jsonwebtoken__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes/index */ \"./src/server/routes/index.js\");\n\n\n\n\n\n__webpack_require__(/*! dotenv */ \"dotenv\").config();\n\n\nconst app = express__WEBPACK_IMPORTED_MODULE_0__();\nconst PORT = 3000;\nlet publicPath = path__WEBPACK_IMPORTED_MODULE_3__[\"resolve\"](__dirname, '..') + '/Public';\nconsole.log(publicPath);\napp.use(express__WEBPACK_IMPORTED_MODULE_0__[\"static\"](publicPath));\napp.use(express__WEBPACK_IMPORTED_MODULE_0__[\"json\"]()); // api\n\napp.use('/api', _routes_index__WEBPACK_IMPORTED_MODULE_4__[\"default\"]);\napp.get('/', (req, res) => {\n  res.sendFile('index.html');\n});\napp.listen(PORT, () => {\n  console.log('app running at http://localhost:' + PORT);\n});\n\n//# sourceURL=webpack:///./src/server/server.js?");
+
+/***/ }),
+
+/***/ "bcrypt":
+/*!*************************!*\
+  !*** external "bcrypt" ***!
+  \*************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\package.json: Error while parsing JSON - Unexpected token < in JSON at position 840\\n    at JSON.parse (<anonymous>)\\n    at C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\files\\\\package.js:57:20\\n    at C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\files\\\\utils.js:37:12\\n    at Generator.next (<anonymous>)\\n    at Function.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:26:3)\\n    at Generator.next (<anonymous>)\\n    at evaluateSync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:244:28)\\n    at Function.sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:84:14)\\n    at sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:66:25)\\n    at sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:177:19)\\n    at onFirstPause (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:204:19)\\n    at Generator.next (<anonymous>)\\n    at cachedFunction (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\caching.js:68:46)\\n    at cachedFunction.next (<anonymous>)\\n    at findPackageData (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\files\\\\package.js:33:18)\\n    at findPackageData.next (<anonymous>)\\n    at buildRootChain (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\config-chain.js:105:92)\\n    at buildRootChain.next (<anonymous>)\\n    at loadPrivatePartialConfig (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\partial.js:95:62)\\n    at loadPrivatePartialConfig.next (<anonymous>)\\n    at Function.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\partial.js:120:25)\\n    at Generator.next (<anonymous>)\\n    at evaluateSync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:244:28)\\n    at Function.sync (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\gensync\\\\index.js:84:14)\\n    at Object.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\index.js:41:61)\\n    at Object.<anonymous> (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:151:26)\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:3:103)\\n    at _next (C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:5:194)\\n    at C:\\\\Users\\\\erron\\\\Documents\\\\Source\\\\AppliedMovement\\\\node_modules\\\\babel-loader\\\\lib\\\\index.js:5:364\");\n\n//# sourceURL=webpack:///./src/server/server.js?");
+eval("module.exports = require(\"bcrypt\");\n\n//# sourceURL=webpack:///external_%22bcrypt%22?");
+
+/***/ }),
+
+/***/ "dotenv":
+/*!*************************!*\
+  !*** external "dotenv" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"dotenv\");\n\n//# sourceURL=webpack:///external_%22dotenv%22?");
+
+/***/ }),
+
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "jsonwebtoken":
+/*!*******************************!*\
+  !*** external "jsonwebtoken" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"jsonwebtoken\");\n\n//# sourceURL=webpack:///external_%22jsonwebtoken%22?");
+
+/***/ }),
+
+/***/ "mysql":
+/*!************************!*\
+  !*** external "mysql" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"mysql\");\n\n//# sourceURL=webpack:///external_%22mysql%22?");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"path\");\n\n//# sourceURL=webpack:///external_%22path%22?");
 
 /***/ })
 
