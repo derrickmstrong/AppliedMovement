@@ -1,9 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const PatientInfo = () => {
-  const history = useHistory();
+  // const history = useHistory();
   
   // Setup state for all form elements, toggles
   const [state, setState] = useState({
@@ -173,10 +173,10 @@ const PatientInfo = () => {
   };
 
   // handleSubmit = Post form data to backend
-  const handleSubmit = async (event) => {
-     event.preventDefault();
+  // const handleSubmit = async (event) => {
+     // event.preventDefault();
       // try {
-      //     let res = await fetch('/api/patient-info', {
+      //     let res = await fetch('/api/', {
       //       method: 'POST',
       //       headers: {
       //         'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ const PatientInfo = () => {
       //   } catch (error) {
       //     console.log(error)
       //   }
-  };
+  // };
 
   const handleReset = () => {
     setState({
@@ -1003,8 +1003,7 @@ const PatientInfo = () => {
               {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
               <Link to='/results'>
                 <button
-                  className='btn submit-button mr-3'
-                  onClick={handleSubmit}>
+                  className='btn submit-button mr-3'>
                   Submit
                 </button>
               </Link>
