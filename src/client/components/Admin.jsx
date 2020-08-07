@@ -99,17 +99,32 @@ const Admin = () => {
               id='name'
               name='name'
               type='text'
+              placeholder='patient name'
+              disabled
               className='form-control'
             />
-            <label htmlFor='dateOfBirth'>Date of Birth</label>
+            <label htmlFor='email'>Email</label>
             <input
               onChange={(e) => {
                 const value = e.target.value;
                 setState({ ...state, [event.target.name]: value });
               }}
-              id='dateOfBirth'
-              name='dateOfBirth'
-              type='text'
+              id='email'
+              name='email'
+              type='email'
+              placeholder='email'
+              className='form-control'
+            />
+            <label htmlFor='phone'>Phone</label>
+            <input
+              onChange={(e) => {
+                const value = e.target.value;
+                setState({ ...state, [event.target.name]: value });
+              }}
+              id='phone'
+              name='phone'
+              type='tel'
+              placeholder='phone'
               className='form-control'
             />
             <button

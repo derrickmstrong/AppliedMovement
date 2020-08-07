@@ -3,7 +3,7 @@ import db from '../db';
 
 const router = express.Router();
 
-// GET /api/chirps/1 or GET /api/chirps
+// WORKING - GET /api/patientinfo/1 or GET /api/patientinfo
 router.get('/:id?', async (req, res, next) => {
   const id = Number(req.params.id);
   if (id) {
@@ -23,7 +23,7 @@ router.get('/:id?', async (req, res, next) => {
   }
 });
 
-// POST /api/patientinfo/
+// In PROGRESS - POST /api/patientinfo/
 router.post('/', async (req, res, next) => {
   const record = req.body;
   try {
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// DELETE /api/chirps/1
+// WORKING -  DELETE /api/chirps/1
 router.delete('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
