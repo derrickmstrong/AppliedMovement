@@ -176,7 +176,7 @@ const PatientInfo = () => {
   // const handleSubmit = async (event) => {
      // event.preventDefault();
       // try {
-      //     let res = await fetch('/api/', {
+      //     let res = await fetch('/api/patientinfo', {
       //       method: 'POST',
       //       headers: {
       //         'Content-Type': 'application/json',
@@ -252,21 +252,21 @@ const PatientInfo = () => {
           state.belowTheKnee !== '' ||
           state.arm !== '' ||
           state.partialFoot !== ''
-            ? `Prothestics: ${state.aboveTheKnee}, ${state.belowTheKnee}, ${state.arm}, ${state.partialFoot} `
+            ? `Prothestics: ${state.aboveTheKnee} ${state.belowTheKnee} ${state.arm} ${state.partialFoot} `
             : ''}
           <br />
           <br />
           {state.backBrace !== '' ||
           state.kneeBrace !== '' ||
           state.ankleBrace !== ''
-            ? `Orthotics: ${state.backBrace}, ${state.kneeBrace}, ${state.ankleBrace} `
+            ? `Orthotics: ${state.backBrace} ${state.kneeBrace} ${state.ankleBrace} `
             : ''}
           <br />
           <br />
           {state.shoes !== '' ||
           state.inserts !== '' ||
           state.shoesInserts !== ''
-            ? `Diabetics Shoes: ${state.shoes}, ${state.inserts}, ${state.shoesInserts} `
+            ? `Diabetics Shoes: ${state.shoes} ${state.inserts} ${state.shoesInserts} `
             : ''}
           <br />
           <br />
@@ -280,7 +280,7 @@ const PatientInfo = () => {
           state.openSore !== '' ||
           state.redness !== '' ||
           state.ulcer !== ''
-            ? `Concerns: ${state.pain}, ${state.pressure}, ${state.rubbing}, ${state.tightness}, ${state.looseness}, ${state.blister}, ${state.callusing}, ${state.openSore}, ${state.redness}, ${state.ulcer} `
+            ? `Patient Concern(s): ${state.pain} ${state.pressure} ${state.rubbing} ${state.tightness} ${state.looseness} ${state.blister} ${state.callusing} ${state.openSore} ${state.redness} ${state.ulcer} `
             : ''}
           <br />
           <br />
@@ -295,7 +295,7 @@ const PatientInfo = () => {
           state.increasedVolume !== '' ||
           state.decreasedVolume !== '' ||
           state.rotating !== ''
-            ? `Assessment: ${state.tooTall}, ${state.tooShort}, ${state.lateralShifting}, ${state.medialShifting}, ${state.noToeClearance}, ${state.tooTight}, ${state.chaffing}, ${state.pistoning}, ${state.increasedVolume}, ${state.decreasedVolume}, ${state.rotating} `
+            ? `Assessment: ${state.tooTall} ${state.tooShort} ${state.lateralShifting} ${state.medialShifting} ${state.noToeClearance} ${state.tooTight} ${state.chaffing} ${state.pistoning} ${state.increasedVolume} ${state.decreasedVolume} ${state.rotating} `
             : ''}
           <br />
           <br />
@@ -304,7 +304,7 @@ const PatientInfo = () => {
           state.limitedWear !== '' ||
           state.unlimitedWear !== '' ||
           state.refer !== ''
-            ? `Plan: ${state.issueResolved}, ${state.oneWeek}, ${state.limitedWear}, ${state.unlimitedWear}, ${state.refer} `
+            ? `Plan: ${state.issueResolved} ${state.oneWeek} ${state.limitedWear} ${state.unlimitedWear} ${state.refer} `
             : ''}
           <br />
           <br />
@@ -349,7 +349,7 @@ const PatientInfo = () => {
             <input
               type='tel'
               pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-              placeholder='123-456-7890'
+              placeholder='205-911-2020'
               className='form-control'
               name='phone'
               onChange={handleInput}

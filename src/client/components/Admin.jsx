@@ -89,7 +89,7 @@ const Admin = () => {
       <section className='row my-2 justify-content-center'>
         <div className='col-md-8'>
         <h3 className='text-center'>Admin Panel</h3>
-          <form className='form-group p-3 shadow border'>
+          <form className='form-group p-3 shadow border bg-white'>
             <label htmlFor='name'>Patient Name</label>
             <input
               onChange={(e) => {
@@ -140,7 +140,7 @@ const Admin = () => {
           </form>
           <button
             onClick={() => history.goBack()}
-            className='btn btn-sm submit-button mx-2'>
+            className='btn submit-button mx-1 float-right'>
             Go Back
           </button>
         </div>

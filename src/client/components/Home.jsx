@@ -45,11 +45,11 @@ const Home = () => {
     <Fragment>
       <div className='jumbotron row jumbo-desktop'>
         <div className='col-4 text-center'>
-          <h3 className='cta-heading mt-5'>
-            <p className='do-more'>Do More</p>
-            Work Less
+          <h3 className='cta-heading m-5'>
+            <p className='do-more'>Work Smarter</p>
+            Not Harder
           </h3>
-            <button className='btn cta-button mt-4'> See video</button>
+          <button className='btn cta-button mt-2'> See Video</button>
         </div>
         <div className='col-8'>
           <img
@@ -69,11 +69,11 @@ const Home = () => {
           />
         </div>
         <div className='col-12 text-center'>
-          <h3 className='cta-heading mt-5'>
-            <p className='do-more'>Do More</p>
-            Work Less
+          <h3 className='cta-heading m-5'>
+            <p className='do-more'>Work Smarter</p>
+            Not Harder
           </h3>
-          <button className='btn cta-button mt-4'> See video</button>
+          <button className='btn cta-button mt-2'>See Video</button>
         </div>
       </div>
 
@@ -129,7 +129,7 @@ const Home = () => {
       </div>
       <div id='features'></div>
       <div className='d-flex justify-content-center mt-5 px-2'>
-        <div className='features-button'>DO MORE, WORK LESS</div>
+        <div className='features-button'>WORK SMARTER, NOT HARDER</div>
       </div>
 
       <div className='features-heading text-center'>FEATURES</div>
@@ -205,7 +205,7 @@ const Home = () => {
       <div id='contact'></div>
       <div className='features-heading text-center my-5'>CONTACT US</div>
       <div className='contact-form'>
-        <form className='contact'>
+        <form className='contact bg-white p-4'>
           <div className='form-group'>
             <label htmlFor='email'>Email address</label>
             <input
@@ -242,7 +242,7 @@ const Home = () => {
               value={state.message}
               onChange={handleChange}></textarea>
           </div>
-          <button className='btn submit-button' onChange={handleSubmit}>
+          <button className='btn submit-button float-right px-2' onChange={handleSubmit}>
             Submit
           </button>
         </form>

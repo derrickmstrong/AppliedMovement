@@ -33,10 +33,12 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <Link to='/admin' className='link'>
-        <input className='btn submit-button mr-3' type='reset' value='Edit' />
-        <input className='btn submit-button' type='reset' value='Delete' />
-      </Link>
+      <div className=' mx-3 float-right'>
+        <Link to='/admin' className='link'>
+          <input className='btn submit-button mr-3' type='reset' value='Edit' />
+          <input className='btn submit-button' type='reset' value='Delete' />
+        </Link>
+      </div>
     </div>
   );
 };

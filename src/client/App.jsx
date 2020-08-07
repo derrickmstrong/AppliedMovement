@@ -35,7 +35,7 @@ const App = () => {
           fontSize='12px'
           text='Go to Top'
         />
-        <footer className='footer mt-auto py-2'>
+        <footer className='footer mt-auto p-3'>
           <div className='container'>
             <span className='text-muted'>
               Copyright &copy; {new Date().getFullYear()} - Applied Movement.
