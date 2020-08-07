@@ -6,14 +6,33 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 function Login() {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [show, setShow] = useState(false);
 
+  const handleEmail = (e) => setEmail(e.target.value)
+  const handlePassword = (e) => setPassword(e.target.value)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleSubmit = (e) => {
-    setShow(false);
+    fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify(email, password),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        token = data.token;
+      });
+      setShow(false);
   };
+
+  console.log(email, password);
 
   return (
     <div>
@@ -33,6 +52,8 @@ function Login() {
                 className='form-control'
                 id='exampleInputEmail1'
                 aria-describedby='emailHelp'
+                value={email}
+                onChange={handleEmail}
               />
               <small id='emailHelp' className='form-text text-muted'>
                 We'll never share your email with anyone else.
@@ -44,6 +65,8 @@ function Login() {
                 type='password'
                 className='form-control'
                 id='exampleInputPassword1'
+                value={password}
+                onChange={handlePassword}
               />
             </div>
           </Modal.Body>

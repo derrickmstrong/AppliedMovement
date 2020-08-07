@@ -1,14 +1,18 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const PatientInfo = () => {
+  // const history = useHistory();
+  
   // Setup state for all form elements, toggles
   const [state, setState] = useState({
     name: '',
     phone: '',
     dateOfBirth: '',
     email: '',
-    leg: '',
+    aboveTheKnee: '',
+    belowTheKnee: '',
     arm: '',
     partialFoot: '',
     backBrace: '',
@@ -16,23 +20,39 @@ const PatientInfo = () => {
     ankleBrace: '',
     shoes: '',
     inserts: '',
+    shoesInserts: '',
     pain: '',
     pressure: '',
     rubbing: '',
     tightness: '',
     looseness: '',
+    blister: '',
+    callusing: '',
+    openSore: '',
+    redness: '',
+    ulcer: '',
     tooTall: '',
     tooShort: '',
     lateralShifting: '',
     medialShifting: '',
     noToeClearance: '',
+    tooTight: '',
+    chaffing: '',
+    pistoning: '',
+    increasedVolume: '',
+    decreasedVolume: '',
+    rotating: '',
     issueResolved: '',
     oneWeek: '',
     limitedWear: '',
     unlimitedWear: '',
     refer: '',
     medicalNotation: '',
-    isLeg: null,
+  });
+
+  const [selected, setSelected] = useState({
+    isAboveTheKnee: null,
+    isBelowTheKnee: null,
     isArm: null,
     isPartialFoot: null,
     isBackBrace: null,
@@ -40,16 +60,28 @@ const PatientInfo = () => {
     isAnkleBrace: null,
     isShoes: null,
     isInserts: null,
+    isShoesInserts: null,
     isPain: null,
     isPressure: null,
     isRubbing: null,
     isTightness: null,
     isLooseness: null,
+    isBlister: null,
+    isCallusing: null,
+    isOpenSore: null,
+    isRedness: null,
+    isUlcer: null,
     isTooTall: null,
     isTooShort: null,
     isLateralShifting: null,
     isMedialShifting: null,
     isNoToeClearance: null,
+    isTooTight: null,
+    isChaffing: null,
+    isPistoning: null,
+    isIncreasedVolume: null,
+    isDecreasedVolume: null,
+    isRotating: null,
     isIssueResolved: null,
     isOneWeek: null,
     isLimitedWear: null,
@@ -59,13 +91,12 @@ const PatientInfo = () => {
 
   // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
   const isChecked = (event, currentCheckbox) => {
-
     // Toggle checkbox state
-    const toggle = `!state.${currentCheckbox}`;
+    const toggle = `!selected.${currentCheckbox}`;
 
-    // setState of currentCheckbox to true or false
-    setState({
-      ...state,
+    // setSelected of currentCheckbox to true or false
+    setSelected({
+      ...selected,
       [currentCheckbox]: [toggle],
     });
 
@@ -85,7 +116,8 @@ const PatientInfo = () => {
 
   // handleCheckbox with for of loop
   const checkboxes = [
-    ['leg', 'isLeg'],
+    ['aboveTheKnee', 'isAboveTheKnee'],
+    ['belowTheKnee', 'isBelowTheKnee'],
     ['arm', 'isArm'],
     ['partialFoot', 'isPartialFoot'],
     ['backBrace', 'isBackBrace'],
@@ -93,23 +125,35 @@ const PatientInfo = () => {
     ['ankleBrace', 'isAnkleBrace'],
     ['shoes', 'isShoes'],
     ['inserts', 'isInserts'],
+    ['shoesInserts', 'isShoesInserts'],
     ['pain', 'isPain'],
     ['pressure', 'isPressure'],
     ['rubbing', 'isRubbing'],
     ['tightness', 'isTightness'],
     ['looseness', 'isLooseness'],
+    ['blister', 'isBlister'],
+    ['callusing', 'isCallusing'],
+    ['openSore', 'isOpenSore'],
+    ['redness', 'isRedness'],
+    ['ulcer', 'isUlcer'],
     ['tooTall', 'isTooTall'],
     ['tooShort', 'isTooShort'],
     ['lateralShifting', 'isLateralShifting'],
     ['medialShifting', 'isMedialShifting'],
     ['noToeClearance', 'isNoToeClearance'],
+    ['tooTight', 'isTooTight'],
+    ['chaffing', 'isChaffing'],
+    ['pistoning', 'isPistoning'],
+    ['increasedVolume', 'isIncreasedVolume'],
+    ['decreasedVolume', 'isDecreasedVolume'],
+    ['rotating', 'isRotating'],
     ['issueResolved', 'isIssueResolved'],
     ['oneWeek', 'isOneWeek'],
     ['limitedWear', 'isLimitedWear'],
     ['unlimitedWear', 'isUnlimitedWear'],
     ['refer', 'isRefer'],
   ];
-  
+
   // handleCheckbox = Checks for event changes in checkbox and updates state
   const handleCheckbox = (event) => {
     for (let [checkbox, isBoxChecked] of checkboxes) {
@@ -129,18 +173,25 @@ const PatientInfo = () => {
   };
 
   // handleSubmit = Post form data to backend
-  const handleSubmit = (event) => {
-    // event.preventDefault();
-    // FIXME: Waiting on Route Info from Backend
-    // let res = await fetch("/api/", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    // TODO: Find out if we can spread state here ie. ...state instead of listing all of the pieces of state
-    //       body: JSON.stringify({ name, phone, dateOfBirth, email, leg, arm, partialFoot, backBrace,kneeBrace, ankleBrace, shoes, inserts, pain, pressure, rubbing, tightness, looseness, tooTall, tooShort, lateralShifting, medialShifting, noToeClearance, issueResolved, oneWeek, limitedWear, unlimitedWear, refer, medicalNotation }),
-    //     });
-  };
+  // const handleSubmit = async (event) => {
+     // event.preventDefault();
+      // try {
+      //     let res = await fetch('/api/', {
+      //       method: 'POST',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify(state),
+      //     });
+      //     if (res.ok) {
+      //       history.push('/api/results');
+      //     } else {
+      //       console.log('Something went wrong');
+      //     }
+      //   } catch (error) {
+      //     console.log(error)
+      //   }
+  // };
 
   const handleReset = () => {
     setState({
@@ -183,25 +234,83 @@ const PatientInfo = () => {
     <Fragment>
       <div id='top'></div>
       <div className='jumbotron row mb-4'>
-        <div className='col'>
-          <h3 className='cta-heading'>
-            Welcome <br /> Dr. Shahid
-          </h3>
+        <div className='col-5'>
+          <div className='cta-heading'>Patient Info</div>
+          {state.name !== '' ? `Patient Name: ${state.name} ` : ''} <br />
+          {state.dateOfBirth !== '' ? `D.O.B: ${state.dateOfBirth} ` : ''}
+          <br />
+          {state.phone !== '' ? `Phone: ${state.phone} ` : ''}
+          <br />
+          {state.email !== '' ? `Email: ${state.email} ` : ''}
+          <br />
         </div>
-        {/* Image Data */}
-        <div className='col'>
-          {state.name}
-          <br />
-          {state.phone}
-          <br />
-          {state.dateOfBirth}
-          <br />
-          {state.email}
-          <br />
-          {state.leg !== '' || state.arm !== '' || state.partialFoot !== ''
-            ? `Prothestics: ${state.leg} ${state.arm} ${state.partialFoot} `
+        {/*  Patient Data */}
+        <div className='col-7 patient-data'>
+          {/*<img src='./assets/am-clipboard.png' className='am-clipboard' />*/}
+          <h3>Summary</h3>
+          {state.aboveTheKnee !== '' ||
+          state.belowTheKnee !== '' ||
+          state.arm !== '' ||
+          state.partialFoot !== ''
+            ? `Prothestics: ${state.aboveTheKnee}, ${state.belowTheKnee}, ${state.arm}, ${state.partialFoot} `
             : ''}
           <br />
+          <br />
+          {state.backBrace !== '' ||
+          state.kneeBrace !== '' ||
+          state.ankleBrace !== ''
+            ? `Orthotics: ${state.backBrace}, ${state.kneeBrace}, ${state.ankleBrace} `
+            : ''}
+          <br />
+          <br />
+          {state.shoes !== '' ||
+          state.inserts !== '' ||
+          state.shoesInserts !== ''
+            ? `Diabetics Shoes: ${state.shoes}, ${state.inserts}, ${state.shoesInserts} `
+            : ''}
+          <br />
+          <br />
+          {state.pain !== '' ||
+          state.pressure !== '' ||
+          state.rubbing !== '' ||
+          state.tightness !== '' ||
+          state.looseness !== '' ||
+          state.blister !== '' ||
+          state.callusing !== '' ||
+          state.openSore !== '' ||
+          state.redness !== '' ||
+          state.ulcer !== ''
+            ? `Concerns: ${state.pain}, ${state.pressure}, ${state.rubbing}, ${state.tightness}, ${state.looseness}, ${state.blister}, ${state.callusing}, ${state.openSore}, ${state.redness}, ${state.ulcer} `
+            : ''}
+          <br />
+          <br />
+          {state.tooTall !== '' ||
+          state.tooShort !== '' ||
+          state.lateralShifting !== '' ||
+          state.medialShifting !== '' ||
+          state.noToeClearance !== '' ||
+          state.tooTight !== '' ||
+          state.chaffing !== '' ||
+          state.pistoning !== '' ||
+          state.increasedVolume !== '' ||
+          state.decreasedVolume !== '' ||
+          state.rotating !== ''
+            ? `Assessment: ${state.tooTall}, ${state.tooShort}, ${state.lateralShifting}, ${state.medialShifting}, ${state.noToeClearance}, ${state.tooTight}, ${state.chaffing}, ${state.pistoning}, ${state.increasedVolume}, ${state.decreasedVolume}, ${state.rotating} `
+            : ''}
+          <br />
+          <br />
+          {state.issueResolved !== '' ||
+          state.oneWeek !== '' ||
+          state.limitedWear !== '' ||
+          state.unlimitedWear !== '' ||
+          state.refer !== ''
+            ? `Plan: ${state.issueResolved}, ${state.oneWeek}, ${state.limitedWear}, ${state.unlimitedWear}, ${state.refer} `
+            : ''}
+          <br />
+          <br />
+          {state.medicalNotation !== ''
+            ? `Medical Notation: ${state.medicalNotation} `
+            : ''}
         </div>
       </div>
       <form id='form'>
@@ -215,19 +324,7 @@ const PatientInfo = () => {
               name='name'
               value={state.name}
               onChange={handleInput}
-            />
-          </div>
-        </div>
-        {/* Phone Number */}
-        <div className='row mb-3'>
-          <div className='col-2 text-right'>Phone Number</div>
-          <div className='col-10'>
-            <input
-              type='text'
-              className='form-control'
-              name='phone'
-              onChange={handleInput}
-              value={state.phone}
+              required
             />
           </div>
         </div>
@@ -236,11 +333,28 @@ const PatientInfo = () => {
           <div className='col-2 text-right'>Date of Birth</div>
           <div className='col-10'>
             <input
-              type='text'
+              type='date'
               className='form-control'
               name='dateOfBirth'
               onChange={handleInput}
               value={state.dateOfBirth}
+              required
+            />
+          </div>
+        </div>
+        {/* Phone Number */}
+        <div className='row mb-3'>
+          <div className='col-2 text-right'>Phone Number</div>
+          <div className='col-10'>
+            <input
+              type='tel'
+              pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+              placeholder='123-456-7890'
+              className='form-control'
+              name='phone'
+              onChange={handleInput}
+              value={state.phone}
+              required
             />
           </div>
         </div>
@@ -254,42 +368,43 @@ const PatientInfo = () => {
               name='email'
               onChange={handleInput}
               value={state.email}
+              required
             />
           </div>
         </div>
-        {/* Area of Concern 
-        <div className='row mb-3'>
-          <div className='col-2 text-right'>Area of Concern</div>
-          <div className='col-10'>
-            <div className='form-group'>
-              <select className='form-control' id='reasonforvisit'>
-                <option>Select Option</option>
-                <option>Prosthetics</option>
-                <option>Orthotics</option>
-                <option>Diabetic Shoes</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        */}
         {/* Prosthetics */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Prosthetics</div>
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
-                {/* Leg */}
+                {/* Above the Knee */}
                 <input
                   className='form-check-input'
                   type='checkbox'
-                  id='leg'
-                  name='leg'
+                  id='aboveTheKnee'
+                  name='aboveTheKnee'
                   onChange={handleCheckbox}
-                  value='leg'
-                  checked={state.isLeg}
+                  value='above the knee'
+                  checked={state.isAboveTheKnee}
                 />
-                <label className='form-check-label' htmlFor='leg'>
-                  Leg
+                <label className='form-check-label' htmlFor='aboveTheKnee'>
+                  Above The Knee
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Below The Knee */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='belowTheKnee'
+                  name='belowTheKnee'
+                  onChange={handleCheckbox}
+                  value='below the knee'
+                  checked={state.isBelowTheKnee}
+                />
+                <label className='form-check-label' htmlFor='below the knee'>
+                  Below The Knee
                 </label>
               </div>
               <div className='form-check form-check-inline'>
@@ -321,7 +436,7 @@ const PatientInfo = () => {
                 <label className='form-check-label' htmlFor='partialFoot'>
                   Partial Foot
                 </label>
-                <svg
+                {/* <svg
                   width='1em'
                   height='1em'
                   viewBox='0 0 16 16'
@@ -332,8 +447,8 @@ const PatientInfo = () => {
                     fillRule='evenodd'
                     d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
                   />
-                </svg>{' '}
-                Add New
+               </svg>
+                Add New */}
               </div>
             </div>
           </div>
@@ -389,19 +504,6 @@ const PatientInfo = () => {
                   Ankle Brace
                 </label>
               </div>
-              <svg
-                width='1em'
-                height='1em'
-                viewBox='0 0 16 16'
-                className='mx-2 bi bi-plus-circle-fill'
-                fill='currentColor'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  fillRule='evenodd'
-                  d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
-                />
-              </svg>{' '}
-              Add New
             </div>
           </div>
         </div>
@@ -441,26 +543,29 @@ const PatientInfo = () => {
                   Inserts
                 </label>
               </div>
-              <svg
-                width='1em'
-                height='1em'
-                viewBox='0 0 16 16'
-                className='mx-2 bi bi-plus-circle-fill'
-                fill='currentColor'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  fillRule='evenodd'
-                  d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
+
+              <div className='form-check form-check-inline'>
+                {/* Shoes and Inserts */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='shoesInserts'
+                  name='shoesInserts'
+                  onChange={handleCheckbox}
+                  checked={state.isShoesInserts}
+                  value='shoes + inserts'
                 />
-              </svg>{' '}
-              Add New
+                <label className='form-check-label' htmlFor='shoesInserts'>
+                  Shoes + Inserts
+                </label>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Objectives */}
+        {/* Patient Concern(s) */}
         <div className='row mb-3'>
-          <div className='col-2 text-right'>Objectives</div>
+          <div className='col-2 text-right'>Patient Concern(s)</div>
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
@@ -537,19 +642,81 @@ const PatientInfo = () => {
                 <label className='form-check-label' htmlFor='looseness'>
                   Looseness
                 </label>
-                <svg
-                  width='1em'
-                  height='1em'
-                  viewBox='0 0 16 16'
-                  className='mx-2 bi bi-plus-circle-fill'
-                  fill='currentColor'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fillRule='evenodd'
-                    d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
-                  />
-                </svg>{' '}
-                Add New
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Blister */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='blister'
+                  name='blister'
+                  onChange={handleCheckbox}
+                  checked={state.isBlister}
+                  value='blister'
+                />
+                <label className='form-check-label' htmlFor='blister'>
+                  Blister
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Callusing */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='callusing'
+                  name='callusing'
+                  onChange={handleCheckbox}
+                  checked={state.isCallusing}
+                  value='callusing'
+                />
+                <label className='form-check-label' htmlFor='callusing'>
+                  Callusing
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Open Sore */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='openSore'
+                  name='openSore'
+                  onChange={handleCheckbox}
+                  checked={state.isOpenSore}
+                  value='open sore'
+                />
+                <label className='form-check-label' htmlFor='openSore'>
+                  Open Sore
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Redness */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='redness'
+                  name='redness'
+                  onChange={handleCheckbox}
+                  checked={state.isRedness}
+                  value='redness'
+                />
+                <label className='form-check-label' htmlFor='redness'>
+                  Redness
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Ulcer */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='ulcer'
+                  name='ulcer'
+                  onChange={handleCheckbox}
+                  checked={state.isUlcer}
+                  value='ulcer'
+                />
+                <label className='form-check-label' htmlFor='ulcer'>
+                  Ulcer
+                </label>
               </div>
             </div>
           </div>
@@ -634,19 +801,96 @@ const PatientInfo = () => {
                 <label className='form-check-label' htmlFor='noToeClearance'>
                   No Toe Clearance
                 </label>
-                <svg
-                  width='1em'
-                  height='1em'
-                  viewBox='0 0 16 16'
-                  className='mx-2 bi bi-plus-circle-fill'
-                  fill='currentColor'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fillRule='evenodd'
-                    d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
-                  />
-                </svg>{' '}
-                Add New
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Too Tight */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='tooTight'
+                  name='tooTight'
+                  onChange={handleCheckbox}
+                  checked={state.isTooTight}
+                  value='too tight'
+                />
+                <label className='form-check-label' htmlFor='tooTight'>
+                  Too Tight
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Chaffing */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='chaffing'
+                  name='chaffing'
+                  onChange={handleCheckbox}
+                  checked={state.isChaffing}
+                  value='chaffing'
+                />
+                <label className='form-check-label' htmlFor='chaffing'>
+                  Chaffing
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Pistoning */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='pistoning'
+                  name='pistoning'
+                  onChange={handleCheckbox}
+                  checked={state.isPistoning}
+                  value='pistoning'
+                />
+                <label className='form-check-label' htmlFor='pistoning'>
+                  Pistoning
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Increased Volume */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='increasedVolume'
+                  name='increasedVolume'
+                  onChange={handleCheckbox}
+                  checked={state.isIncreasedVolume}
+                  value='increased volume'
+                />
+                <label className='form-check-label' htmlFor='InceasedVolume'>
+                  Increased Volume
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/*Decreased Volume */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='decreasedVolume'
+                  name='decreasedVolume'
+                  onChange={handleCheckbox}
+                  checked={state.isDecreasedVolume}
+                  value='decreased volume'
+                />
+                <label className='form-check-label' htmlFor='decreasedVolume'>
+                  Decreased Volume
+                </label>
+              </div>
+              <div className='form-check form-check-inline'>
+                {/* Rotating */}
+                <input
+                  className='form-check-input'
+                  type='checkbox'
+                  id='rotating'
+                  name='rotating'
+                  onChange={handleCheckbox}
+                  checked={state.isRotating}
+                  value='rotating'
+                />
+                <label className='form-check-label' htmlFor='rotating'>
+                  Rotating
+                </label>
               </div>
             </div>
           </div>
@@ -731,19 +975,6 @@ const PatientInfo = () => {
                 <label className='form-check-label' htmlFor='refer'>
                   Refer to Specialist
                 </label>
-                <svg
-                  width='1em'
-                  height='1em'
-                  viewBox='0 0 16 16'
-                  className='mx-2 bi bi-plus-circle-fill'
-                  fill='currentColor'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fillRule='evenodd'
-                    d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z'
-                  />
-                </svg>{' '}
-                Add New
               </div>
             </div>
           </div>
@@ -772,11 +1003,7 @@ const PatientInfo = () => {
             <div className='submit-btn'>
               {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
               <Link to='/results'>
-                <button
-                  className='btn submit-button mr-3'
-                  onClick={handleSubmit}>
-                  Submit
-                </button>
+                <button className='btn submit-button mr-3'>Submit</button>
               </Link>
               <input
                 className='btn alt-button'

@@ -1,7 +1,12 @@
-import * as mysql from 'mysql2';
-import config from '../src/server/config';
+import * as mysql from 'mysql';
 
-const pool = mysql.createPool(config.mysql);
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'appliedmovement',
+  password: '1234567',
+  database: 'patientportal',
+  connectionLimit: 10,
+});
 
 export const Query = (query, values) => {
 	const sql = mysql.format(query, values);
@@ -18,8 +23,6 @@ export const Query = (query, values) => {
 };
 
 import queries from './queries/queries';
-//import users from './queries/users';
 export default {
-	queries,
-	//users
+	queries
 };

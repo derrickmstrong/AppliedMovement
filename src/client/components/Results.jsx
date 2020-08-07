@@ -2,12 +2,13 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import ResultsCard from './ResultsCard.jsx';
+import Details from '../views/Details.jsx'
 
 const Results = () => {
   const [records, setRecords] = useState([]);
 
   const fetchApi = async () => {
-    const res = await fetch('http://localhost:3000/api');
+    const res = await fetch('api/patientinfo');
     const data = await res.json();
     setRecords(data);
   };
@@ -21,25 +22,23 @@ const Results = () => {
     <Fragment>
       <div className='row mb-4'>
         <div className='col'>
-          <div class='input-group'>
+          <div className='input-group'>
             <input
               type='text'
-              class='form-control'
+              className='form-control'
               placeholder='Search Records'
               aria-label='Search Records'
               aria-describedby='search-btn'
             />
-            <div class='input-group-append' id='search-btn'>
-              <button class='btn submit-button' type='button'>
+            <div className='input-group-append' id='search-btn'>
+              <button className='btn submit-button' type='button'>
                 Search
               </button>
             </div>
             <Link to='patientinfo'>
-            <button
-              class='btn submit-button ml-3'
-              type='button'>
-              Add New Record
-            </button>
+              <button className='btn submit-button ml-3' type='button'>
+                Add New Record
+              </button>
             </Link>
           </div>
         </div>
@@ -47,23 +46,32 @@ const Results = () => {
       <div className='row'>
         <div className='col'>
           <h3>Records</h3>
-          {/* 
+         
          {records.map((record) => (
             <ResultsCard key={record.id} record={record} />
           ))}
-         */}
+       
+          {/*div className='col-md-12'>
+            <div className='card my-2 shadow-drop-2-center'>
+              <div className='card-body text-left'>
+                <h4 className='card-title'>John Doe</h4>
+                <p className='card-text'>DOB: 1/1/2020</p>
+                <p className='card-text'>Email: johndoe@email.com</p>
+              </div>
+            </div>
+          </div>
+          <div className='col-md-12'>
+            <div className='card my-2 shadow-drop-2-center'>
+              <div className='card-body text-left'>
+                <h4 className='card-title'>Jane Doe</h4>
+                <p className='card-text'>DOB: 2/1/1985</p>
+                <p className='card-text'>Email: janedoe20@hotmail.com</p>
+              </div>
+            </div>
+         </div>*/}
         </div>
         <div className='col'>
-          <h3>Detail Record</h3>
-          <p>Detailed patient info here</p>
-          <Link to='/admin' className='link'>
-            <input
-              className='btn submit-button mr-3'
-              type='reset'
-              value='Edit'
-            />
-            <input className='btn submit-button' type='reset' value='Delete' />
-          </Link>
+          <Details />
         </div>
       </div>
     </Fragment>

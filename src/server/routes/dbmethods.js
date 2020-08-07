@@ -5,11 +5,11 @@ const router = express.Router();
 
 // GET /api/chirps/1 or GET /api/chirps
 router.get("/:id?", async (req, res, next) => {
-  const id = (req.params.id);
+  const id = Number(req.params.id);
   if (id) {
     try {
-      const [chirp] = await db.chirps.one(id);
-      res.json(chirp);
+      const [patientRecord] = await db.queries.queries.one(id);
+      res.json(c);
     } catch (error) {
       next(error);
     }
@@ -50,7 +50,7 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   const id = Number(req.params.id);
   try {
-    await db.chirps.destroy(id);
+    await db.queries.destroy(id);
     res.json({ msg: "destroyed" });
   } catch (error) {
     next(error);
