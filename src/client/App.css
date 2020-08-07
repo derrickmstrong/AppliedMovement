@@ -292,6 +292,9 @@ footer {
   color: gray;
 }
 
+.do-more {
+  font-size: 1.25em;
+}
 /* Icons */
 .am-icon {
   width: 90px;
@@ -300,7 +303,12 @@ footer {
 
 /* Patient Info */
 .patient-data {
+  background-color: var(--link);
+  color: var(--bg2);
+  padding-top: 1em;
+  padding-bottom: 1em;
   font-size: .8rem;
+  border-radius: 5px;
 }
 
 .am-clipboard {
@@ -328,4 +336,7 @@ footer {
   .nav, .brand-logo {
     margin: 0 auto;
   }
+  .cta-heading.mt-5 { text-align: center;}
+  .col-5>.cta-heading { display: none; }
+  
 }

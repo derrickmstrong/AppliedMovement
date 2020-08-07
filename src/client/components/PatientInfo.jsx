@@ -1,9 +1,9 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const PatientInfo = () => {
-  const history = useHistory();
+  // const history = useHistory();
   
   // Setup state for all form elements, toggles
   const [state, setState] = useState({
@@ -173,10 +173,10 @@ const PatientInfo = () => {
   };
 
   // handleSubmit = Post form data to backend
-  const handleSubmit = async (event) => {
-     event.preventDefault();
+  // const handleSubmit = async (event) => {
+     // event.preventDefault();
       // try {
-      //     let res = await fetch('/api/patient-info', {
+      //     let res = await fetch('/api/', {
       //       method: 'POST',
       //       headers: {
       //         'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ const PatientInfo = () => {
       //   } catch (error) {
       //     console.log(error)
       //   }
-  };
+  // };
 
   const handleReset = () => {
     setState({
@@ -235,7 +235,7 @@ const PatientInfo = () => {
       <div id='top'></div>
       <div className='jumbotron row mb-4'>
         <div className='col-5'>
-          <h3 className='cta-heading'>Patient Info</h3>
+          <div className='cta-heading'>Patient Info</div>
           {state.name !== '' ? `Patient Name: ${state.name} ` : ''} <br />
           {state.dateOfBirth !== '' ? `D.O.B: ${state.dateOfBirth} ` : ''}
           <br />
@@ -247,6 +247,7 @@ const PatientInfo = () => {
         {/*  Patient Data */}
         <div className='col-7 patient-data'>
           {/*<img src='./assets/am-clipboard.png' className='am-clipboard' />*/}
+          <h3>Summary</h3>
           {state.aboveTheKnee !== '' ||
           state.belowTheKnee !== '' ||
           state.arm !== '' ||
@@ -279,7 +280,7 @@ const PatientInfo = () => {
           state.openSore !== '' ||
           state.redness !== '' ||
           state.ulcer !== ''
-            ? `Objectives: ${state.pain}, ${state.pressure}, ${state.rubbing}, ${state.tightness}, ${state.looseness}, ${state.blister}, ${state.callusing}, ${state.openSore}, ${state.redness}, ${state.ulcer} `
+            ? `Concerns: ${state.pain}, ${state.pressure}, ${state.rubbing}, ${state.tightness}, ${state.looseness}, ${state.blister}, ${state.callusing}, ${state.openSore}, ${state.redness}, ${state.ulcer} `
             : ''}
           <br />
           <br />
@@ -562,9 +563,9 @@ const PatientInfo = () => {
           </div>
         </div>
 
-        {/* Objectives */}
+        {/* Patient Concern(s) */}
         <div className='row mb-3'>
-          <div className='col-2 text-right'>Objectives</div>
+          <div className='col-2 text-right'>Patient Concern(s)</div>
           <div className='col-10'>
             <div className='form-group form-check'>
               <div className='form-check form-check-inline'>
@@ -1002,11 +1003,7 @@ const PatientInfo = () => {
             <div className='submit-btn'>
               {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
               <Link to='/results'>
-                <button
-                  className='btn submit-button mr-3'
-                  onClick={handleSubmit}>
-                  Submit
-                </button>
+                <button className='btn submit-button mr-3'>Submit</button>
               </Link>
               <input
                 className='btn alt-button'

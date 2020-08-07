@@ -8,7 +8,7 @@ const Results = () => {
   const [records, setRecords] = useState([]);
 
   const fetchApi = async () => {
-    const res = await fetch('http://localhost:3000/api');
+    const res = await fetch('api/patientinfo');
     const data = await res.json();
     setRecords(data);
   };
@@ -46,12 +46,12 @@ const Results = () => {
       <div className='row'>
         <div className='col'>
           <h3>Records</h3>
-          {/* 
+         
          {records.map((record) => (
             <ResultsCard key={record.id} record={record} />
           ))}
-         */}
-          <div className='col-md-12'>
+       
+          {/*div className='col-md-12'>
             <div className='card my-2 shadow-drop-2-center'>
               <div className='card-body text-left'>
                 <h4 className='card-title'>John Doe</h4>
@@ -68,7 +68,7 @@ const Results = () => {
                 <p className='card-text'>Email: janedoe20@hotmail.com</p>
               </div>
             </div>
-          </div>
+         </div>*/}
         </div>
         <div className='col'>
           <Details />

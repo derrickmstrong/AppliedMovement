@@ -44,14 +44,12 @@ const Home = () => {
   return (
     <Fragment>
       <div className='jumbotron row jumbo-desktop'>
-        <div className='col-4'>
+        <div className='col-4 text-center'>
           <h3 className='cta-heading mt-5'>
-            Type Less
-            <br />
-            Do More
+            <p className='do-more'>Do More</p>
+            Work Less
           </h3>
-          <p className='cta-text'></p>
-          <button className='btn cta-button'> See video</button>
+            <button className='btn cta-button mt-4'> See video</button>
         </div>
         <div className='col-8'>
           <img
@@ -70,14 +68,12 @@ const Home = () => {
             alt='Applied Movement'
           />
         </div>
-        <div className='col-12'>
+        <div className='col-12 text-center'>
           <h3 className='cta-heading mt-5'>
-            Type Less
-            <br />
-            Do More
+            <p className='do-more'>Do More</p>
+            Work Less
           </h3>
-          <p className='cta-text'> </p>
-          <button className='btn cta-button'> See video</button>
+          <button className='btn cta-button mt-4'> See video</button>
         </div>
       </div>
 

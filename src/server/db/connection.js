@@ -1,11 +1,6 @@
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'appliedmovement',
-  password: '1234567',
-  database: 'patientportal',
-});
+const connection = mysql.createConnection();
 
 const orm = {
   // get(users, {name:'sam',email:'sam@email.com'})
