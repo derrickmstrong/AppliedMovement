@@ -51,24 +51,6 @@ const Results = () => {
             <ResultsCard key={record.id} record={record} />
           ))}
        
-          {/*div className='col-md-12'>
-            <div className='card my-2 shadow-drop-2-center'>
-              <div className='card-body text-left'>
-                <h4 className='card-title'>John Doe</h4>
-                <p className='card-text'>DOB: 1/1/2020</p>
-                <p className='card-text'>Email: johndoe@email.com</p>
-              </div>
-            </div>
-          </div>
-          <div className='col-md-12'>
-            <div className='card my-2 shadow-drop-2-center'>
-              <div className='card-body text-left'>
-                <h4 className='card-title'>Jane Doe</h4>
-                <p className='card-text'>DOB: 2/1/1985</p>
-                <p className='card-text'>Email: janedoe20@hotmail.com</p>
-              </div>
-            </div>
-         </div>*/}
         </div>
         <div className='col'>
           <Details />

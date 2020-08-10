@@ -1,10 +1,9 @@
 import React from 'react';
 // import { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Details = () => {
+const Details = (props) => {
   // const { id } = useParams();
-  const history = useHistory();
   // const [records, setRecords] = useState(null);
 
   // const fetchApi = async () => {
@@ -18,6 +17,17 @@ const Details = () => {
   //   return () => {};
   // }, []);
 
+  // const [patient, setPatient] = useState({});
+  // const location = useLocation();
+  // useEffect(() => {
+  //   const id = new URLSearchParams(location.search).get('id');
+  //   fetch('/api/patientinfo/' + id)
+  //     .then((r) => r.json())
+  //     .then((res) => {
+  //       setPatient(res);
+  //     });
+  // }, []);
+
   // REMEMBER TO REFERENCE FullStackChirp - Details.jsx in views folder
   return (
     <div>
@@ -25,7 +35,7 @@ const Details = () => {
       <div className='col-md-12 mb-4'>
         <div className='card shadow'>
           <div className='card-body text-center'>
-            <h4 className='card-title'>Patient Name</h4>
+            <h4 className='card-title'>Patient</h4>
             <p className='card-text'>D.O.B.</p>
             <p className='card-text'>Email</p>
             <p className='card-text'>Phone</p>

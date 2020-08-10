@@ -326,6 +326,18 @@ footer {
 }
 
 
+/* Send Grid */
+
+.success-msg {
+  color: var(--logo1);
+  padding: 10px 15px;
+}
+
+
+.err-msg {
+  color: #EE6352;
+  padding: 10px 15px;
+}
 
 /* Media Queries */
 @media screen and (max-width: 500px) {

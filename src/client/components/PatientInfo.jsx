@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PatientInfo = () => {
   // const history = useHistory();
-  
+
   // Setup state for all form elements, toggles
   const [state, setState] = useState({
     name: '',
@@ -50,120 +50,24 @@ const PatientInfo = () => {
     medicalNotation: '',
   });
 
-  const [selected, setSelected] = useState({
-    isAboveTheKnee: null,
-    isBelowTheKnee: null,
-    isArm: null,
-    isPartialFoot: null,
-    isBackBrace: null,
-    isKneeBrace: null,
-    isAnkleBrace: null,
-    isShoes: null,
-    isInserts: null,
-    isShoesInserts: null,
-    isPain: null,
-    isPressure: null,
-    isRubbing: null,
-    isTightness: null,
-    isLooseness: null,
-    isBlister: null,
-    isCallusing: null,
-    isOpenSore: null,
-    isRedness: null,
-    isUlcer: null,
-    isTooTall: null,
-    isTooShort: null,
-    isLateralShifting: null,
-    isMedialShifting: null,
-    isNoToeClearance: null,
-    isTooTight: null,
-    isChaffing: null,
-    isPistoning: null,
-    isIncreasedVolume: null,
-    isDecreasedVolume: null,
-    isRotating: null,
-    isIssueResolved: null,
-    isOneWeek: null,
-    isLimitedWear: null,
-    isUnlimitedWear: null,
-    isRefer: null,
-  });
-
-  // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
-  const isChecked = (event, currentCheckbox) => {
-    // Toggle checkbox state
-    const toggle = `!selected.${currentCheckbox}`;
-
-    // setSelected of currentCheckbox to true or false
-    setSelected({
-      ...selected,
-      [currentCheckbox]: [toggle],
-    });
-
-    // If checkbox is checked value is targets pre-defined value else value is an empty string
+  const handleCheckbox = (event) => {
+    const target = event.target;
+    const name = target.name;
+    const value = target.type === 'checkbox' ? target.value : name;
+    // Toggle/setState individual checkbox value
     if (event.target.checked) {
       setState({
         ...state,
-        [event.target.name]: event.target.value,
+        [name]: value,
       });
     } else {
       setState({
         ...state,
-        [event.target.name]: '',
+        [name]: '',
       });
     }
   };
 
-  // handleCheckbox with for of loop
-  const checkboxes = [
-    ['aboveTheKnee', 'isAboveTheKnee'],
-    ['belowTheKnee', 'isBelowTheKnee'],
-    ['arm', 'isArm'],
-    ['partialFoot', 'isPartialFoot'],
-    ['backBrace', 'isBackBrace'],
-    ['kneeBrace', 'isKneeBrace'],
-    ['ankleBrace', 'isAnkleBrace'],
-    ['shoes', 'isShoes'],
-    ['inserts', 'isInserts'],
-    ['shoesInserts', 'isShoesInserts'],
-    ['pain', 'isPain'],
-    ['pressure', 'isPressure'],
-    ['rubbing', 'isRubbing'],
-    ['tightness', 'isTightness'],
-    ['looseness', 'isLooseness'],
-    ['blister', 'isBlister'],
-    ['callusing', 'isCallusing'],
-    ['openSore', 'isOpenSore'],
-    ['redness', 'isRedness'],
-    ['ulcer', 'isUlcer'],
-    ['tooTall', 'isTooTall'],
-    ['tooShort', 'isTooShort'],
-    ['lateralShifting', 'isLateralShifting'],
-    ['medialShifting', 'isMedialShifting'],
-    ['noToeClearance', 'isNoToeClearance'],
-    ['tooTight', 'isTooTight'],
-    ['chaffing', 'isChaffing'],
-    ['pistoning', 'isPistoning'],
-    ['increasedVolume', 'isIncreasedVolume'],
-    ['decreasedVolume', 'isDecreasedVolume'],
-    ['rotating', 'isRotating'],
-    ['issueResolved', 'isIssueResolved'],
-    ['oneWeek', 'isOneWeek'],
-    ['limitedWear', 'isLimitedWear'],
-    ['unlimitedWear', 'isUnlimitedWear'],
-    ['refer', 'isRefer'],
-  ];
-
-  // handleCheckbox = Checks for event changes in checkbox and updates state
-  const handleCheckbox = (event) => {
-    for (let [checkbox, isBoxChecked] of checkboxes) {
-      if (event.target.type === 'checkbox' && event.target.name === checkbox) {
-        isChecked(event, isBoxChecked);
-      }
-    }
-  };
-
-  // handleInput fields
   const handleInput = (event) => {
     const value = event.target.value;
     setState({
@@ -172,25 +76,24 @@ const PatientInfo = () => {
     });
   };
 
-  // handleSubmit = Post form data to backend
   // const handleSubmit = async (event) => {
-     // event.preventDefault();
-      // try {
-      //     let res = await fetch('/api/patientinfo', {
-      //       method: 'POST',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(state),
-      //     });
-      //     if (res.ok) {
-      //       history.push('/api/results');
-      //     } else {
-      //       console.log('Something went wrong');
-      //     }
-      //   } catch (error) {
-      //     console.log(error)
-      //   }
+  // event.preventDefault();
+  // try {
+  //     let res = await fetch('/api/patientinfo', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(state),
+  //     });
+  //     if (res.ok) {
+  //       history.push('/api/results');
+  //     } else {
+  //       console.log('Something went wrong');
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
   // };
 
   const handleReset = () => {
@@ -200,7 +103,8 @@ const PatientInfo = () => {
       phone: '',
       dateOfBirth: '',
       email: '',
-      leg: '',
+      aboveTheKnee: '',
+      belowTheKnee: '',
       arm: '',
       partialFoot: '',
       backBrace: '',

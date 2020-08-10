@@ -1,15 +1,14 @@
 import React, { useState, Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
+import Axios from 'axios';
 
 const Home = () => {
-  const history = useHistory()
   const [state, setState] = useState({
     email: '',
     subject: '',
     message: '',
-  })
-
-  // TODO: Create error state and success state
+    disabled: false,
+    emailSent: null,
+  });
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -19,27 +18,45 @@ const Home = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      let res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(state),
-      });
-      if (res.ok) {
-        history.push('/');
-      } else {
-        console.log('Something went wrong');
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  };
+  console.log(state);
 
-  console.log(state)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    setState({
+      ...state,
+      disabled: true,
+    });
+
+    Axios.post(`http://localhost:3000/contact`, state)
+      .then((res) => {
+        if (res.data.success) {
+          setState({
+            ...state,
+            email: '',
+            subject: '',
+            message: '',
+            disabled: false,
+            emailSent: true,
+          });
+        } else {
+          console.log('Something went wrong');
+          setState({
+            ...state,
+            disabled: false,
+            emailSent: false,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log('Error:', err);
+        setState({
+          ...state,
+          disabled: false,
+          emailSent: false,
+        });
+      });
+  };
 
   return (
     <Fragment>
@@ -205,7 +222,7 @@ const Home = () => {
       <div id='contact'></div>
       <div className='features-heading text-center my-5'>CONTACT US</div>
       <div className='contact-form'>
-        <form className='contact bg-white p-4'>
+        <form className='contact bg-white p-4' onSubmit={handleSubmit}>
           <div className='form-group'>
             <label htmlFor='email'>Email address</label>
             <input
@@ -215,6 +232,7 @@ const Home = () => {
               name='email'
               value={state.email}
               onChange={handleChange}
+              
             />
           </div>
           <div className='form-group'>
@@ -240,11 +258,21 @@ const Home = () => {
               rows='3'
               name='message'
               value={state.message}
-              onChange={handleChange}></textarea>
+              onChange={handleChange}
+              ></textarea>
           </div>
-          <button className='btn submit-button float-right px-2' onChange={handleSubmit}>
+          <button
+            className='btn submit-button float-right px-2'
+            disabled={state.disabled}>
             Submit
           </button>
+
+          {state.emailSent === true && (
+            <p className='d-inline success-msg'>Thank you, email sent!</p>
+          )}
+          {state.emailSent === false && (
+            <p className='d-inline err-msg'>Sorry, email not sent!</p>
+          )}
         </form>
       </div>
     </Fragment>

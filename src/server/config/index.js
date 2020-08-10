@@ -18,4 +18,5 @@ export default {
   logs: {
     level: process.env.LOG_LEVEL,
   },
+  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY 
 };
