@@ -19,10 +19,11 @@ function Login() {
   const handleSubmit = (e) => {
     fetch('/api/login', {
       method: 'POST',
-      body: JSON.stringify(email, password),
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(email, password)
     })
       .then((res) => res.json())
       .then((data) => {
@@ -32,7 +33,25 @@ function Login() {
       setShow(false);
   };
 
-  console.log(email, password);
+//   const handleSubmit = async (e) => {
+// try {
+//   let userLogin = await fetch('/api/login', {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: await JSON.stringify(email, password)
+//   })
+//   let user = await userLogin.json();
+//   let token = user.token
+//   // console.log('returning user', user)
+//   // console.log('User login response', userLogin)
+
+// } catch(err) {
+//   console.log(err)
+// }
+//   }
 
   return (
     <div>

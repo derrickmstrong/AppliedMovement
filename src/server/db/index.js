@@ -2,8 +2,8 @@ import * as mysql from 'mysql';
 
 const pool = mysql.createPool({
   host: 'localhost',
-  user: 'appliedmovement',
-  password: '1234567',
+  user: 'root',
+  password: "",
   database: 'patientportal',
   connectionLimit: 10,
 });

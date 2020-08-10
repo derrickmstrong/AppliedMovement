@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 // import { useHistory } from 'react-router-dom';
 
-const PatientInfo = () => {
+const PatientInfo = (props) => {
   // const history = useHistory();
   
   // Setup state for all form elements, toggles
@@ -88,6 +88,22 @@ const PatientInfo = () => {
     isUnlimitedWear: null,
     isRefer: null,
   });
+  const submitForm = (event)=>{
+    event.preventDefault()
+    fetch("/api/patientinfo",{
+      method:"POST",
+      body:JSON.stringify(state),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(f=>f.json())
+    .then(result=>{
+      props.history.push('/details?id='+result.id)
+      console.log('id',result)
+    }).catch(err=>{
+      console.error(err)
+    })
+  }
 
   // isChecked = Toggles selected checkbox + Check to see if checkbox is checked/unchecked
   const isChecked = (event, currentCheckbox) => {
@@ -228,7 +244,7 @@ const PatientInfo = () => {
   };
 
   // Check state in console
-  console.log(state);
+ // console.log(state);
 
   return (
     <Fragment>
@@ -313,7 +329,7 @@ const PatientInfo = () => {
             : ''}
         </div>
       </div>
-      <form id='form'>
+      <form id='form' onSubmit ={submitForm}>
         {/* Patient Name */}
         <div className='row mb-3'>
           <div className='col-2 text-right'>Patient Name</div>
@@ -1002,9 +1018,9 @@ const PatientInfo = () => {
           <div className='col-10'>
             <div className='submit-btn'>
               {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
-              <Link to='/results'>
+              
                 <button className='btn submit-button mr-3'>Submit</button>
-              </Link>
+              
               <input
                 className='btn alt-button'
                 type='reset'

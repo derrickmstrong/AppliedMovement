@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 
+
 const Home = () => {
   const history = useHistory()
   const [state, setState] = useState({
@@ -19,10 +20,11 @@ const Home = () => {
     });
   };
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      let res = await fetch('/api/contact', {
+      let res = await fetch('/api/patientinfo/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

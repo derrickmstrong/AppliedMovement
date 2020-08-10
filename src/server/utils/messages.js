@@ -1,29 +1,30 @@
-// const nodemailer = require('nodemailer');
-// const sendgridTransport = require('nodemailer-sendgrid-transport');
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+const {generateContactEmail} = require('../email-templates/templates')
 
-<<<<<<< HEAD
-=======
+//repace send_api_key with key from .env file
+const options = {
+    auth:{
+        api_key:process.env.SENDGRID_API_KEY
+    }
+};
 
->>>>>>> 0fe23b621dc21141635b8ecee28b889dcd1533b1
-// const options = {
-//     auth:{
-//         api_key: process.env.SENDGRID_API_KEY
-//     }
-// };
+let mailer = nodemailer.createTransport(sendgridTransport(options));
 
-// let mailer = nodemailer.createTransport(sendgridTransport(options));
+exports.sendContactMessage = async (message) => {
+    console.log('Message from message utility', message)
+     let messageSent;
+    try {
+        let emailMessage = await generateContactEmail(message);
+        console.log('Generated email', emailMessage)
+        let sendMessage = await mailer.sendMail(emailMessage, (err, res) => {
+            if (err) return console.log(err)
+            return true
+        })
+        console.log(sendMessage)
+        return messageSent = true
+    } catch (err) {
+        console.info(err);
+    }
 
-// exports.sendContactMail = async (message) => {
-//     //const {email, subject, message} = message;
-//     let messageSent;
-//     try {
-//         let emailMessage = await generateContactEmail(message)
-//     } catch (err) {
-//         console.info(err);
-//     }
-
-<<<<<<< HEAD
-// }
-=======
-// }
->>>>>>> 0fe23b621dc21141635b8ecee28b889dcd1533b1
+}

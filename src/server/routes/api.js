@@ -51,8 +51,9 @@ router.post('/register', (req, res) => {
   });
 });
 
-router.get('/secret', auth, (req, res) => {
-  res.json(req.user);
+router.get('/secret', (req, res) => {
+  // res.json(req.user);
+  res.send('Hello World!')
 });
 
 function auth(req, res, next) {
@@ -72,5 +73,9 @@ function auth(req, res, next) {
   }
   next();
 }
+
+
+
+
 
 module.exports = router;

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Login from './Login.jsx'
 
+import Search from './Search.jsx'
+
 const Nav = () => {
  
   return (
@@ -43,6 +45,7 @@ const Nav = () => {
           <Login />
         </li>
       </ul>
+      <Search/>
     </div>
   );
 };

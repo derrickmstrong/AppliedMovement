@@ -1,6 +1,13 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
+import dotenv from 'dotenv';
+dotenv.config();
 
-const connection = mysql.createConnection();
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_SCHEMA
+});
 
 const orm = {
   // get(users, {name:'sam',email:'sam@email.com'})
@@ -35,6 +42,7 @@ const orm = {
     };
   },
 };
+
 // SELECT * FROM x WHERE column1 = "sam" AND solumn2 = "free"
 // UPDATE x SET column1 = "sam" , solumn2 = "free" WHERE column3 = "some"
-module.exports = { orm, connection };
+export { orm, connection };

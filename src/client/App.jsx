@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter, Link } from 'react-router-dom';
 
 import BackToTop from 'react-easy-back-to-top';
 
@@ -15,6 +15,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='container my-5'>
+        
         <Nav />
         <Switch>
           <Route exact path='/' component={Home} />

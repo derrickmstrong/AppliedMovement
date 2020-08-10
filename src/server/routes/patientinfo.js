@@ -1,42 +1,27 @@
 import * as express from 'express';
 import db from '../db';
+import {orm, connection} from '../db/connection'
 
 const router = express.Router();
 
 // WORKING - GET /api/patientinfo/1 or GET /api/patientinfo
-router.get('/:id?', async (req, res, next) => {
-  const id = Number(req.params.id);
-  if (id) {
-    try {
-      const [patientRecord] = await db.queries.one(id);
-      res.json(patientRecord);
-    } catch (error) {
-      next(error);
+router.get('/:id', async (req, res, next) => {
+  orm.get('patientinfo',{id:req.params.id}, (err, results)=>{
+    
+    if(err || results.length < 1){
+      res.status(500);
     }
-  } else {
-    try {
-      const queries = await db.queries.all();
-      res.json(queries);
-    } catch (error) {
-      next(error);
-    }
-  }
+    res.json(results[0]);
+  })
+  
 });
 
 // In PROGRESS - POST /api/patientinfo/
 router.post('/', async (req, res, next) => {
-  const record = req.body;
-  try {
-    const result = await db.queries.insert(
-      record.name,
-      record.dateOfBirth,
-      record.phone,
-      record.email, 
-    );
-    res.json({ result });
-  } catch (error) {
-    next(error);
-  }
+  orm.insert('patientinfo', req.body, (err,result) => {
+    res.json({id: result.insertId});
+  })
+
 });
 
 // PUT /api/chirps/1
@@ -61,5 +46,12 @@ router.delete('/:id', async (req, res, next) => {
     console.log(error);
   }
 });
+
+router.get('/search/:term', (req, res) => {
+  connection.execute('SELECT * FROM patientinfo WHERE name LIKE ?',[req.params.term+'%'],(err, results)=> {
+    res.json(results)
+  })
+ 
+})
 
 export default router;
