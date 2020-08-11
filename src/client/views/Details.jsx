@@ -1,6 +1,6 @@
 import React from 'react';
-// import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
 const Details = (props) => {
   // const { id } = useParams();
@@ -17,16 +17,16 @@ const Details = (props) => {
   //   return () => {};
   // }, []);
 
-  // const [patient, setPatient] = useState({});
-  // const location = useLocation();
-  // useEffect(() => {
-  //   const id = new URLSearchParams(location.search).get('id');
-  //   fetch('/api/patientinfo/' + id)
-  //     .then((r) => r.json())
-  //     .then((res) => {
-  //       setPatient(res);
-  //     });
-  // }, []);
+  const [patient, setPatient] = useState({});
+  const location = useLocation();
+  useEffect(() => {
+    const id = new URLSearchParams(location.search).get('id');
+    fetch('/api/patientinfo/' + id)
+      .then((r) => r.json())
+      .then((res) => {
+        setPatient(res);
+      });
+  }, []);
 
   // REMEMBER TO REFERENCE FullStackChirp - Details.jsx in views folder
   return (
@@ -35,7 +35,7 @@ const Details = (props) => {
       <div className='col-md-12 mb-4'>
         <div className='card shadow'>
           <div className='card-body text-center'>
-            <h4 className='card-title'>Patient</h4>
+            <h4 className='card-title'>Patient {patient.name}</h4>
             <p className='card-text'>D.O.B.</p>
             <p className='card-text'>Email</p>
             <p className='card-text'>Phone</p>

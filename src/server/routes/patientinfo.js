@@ -1,8 +1,18 @@
 import * as express from 'express';
 import db from '../db';
-// import { orm, connection } from '../db/connection';
+import { orm } from '../db/connection';
 
 const router = express.Router();
+
+
+router.get('/:id', async (req, res, next) => {
+  orm.get('patientinfo', { id: req.params.id }, (err, results) => {
+    if (err || results.length < 1) {
+      res.status(500);
+    }
+    res.json(results[0]);
+  });
+});
 
 // WORKING - GET /api/patientinfo/1 or GET /api/patientinfo
 router.get('/:id?', async (req, res, next) => {

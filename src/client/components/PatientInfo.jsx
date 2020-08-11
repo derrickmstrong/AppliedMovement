@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 // import { useHistory } from 'react-router-dom';
 
-const PatientInfo = () => {
+const PatientInfo = (props) => {
   // const history = useHistory();
 
   // Setup state for all form elements, toggles
@@ -94,6 +94,26 @@ const PatientInfo = () => {
   //   } catch (error) {
   //     console.log(error)
   //   }
+  // };
+
+  // From Backend
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   fetch('/api/patientinfo', {
+  //     method: 'POST',
+  //     body: JSON.stringify(state),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((f) => f.json())
+  //     .then((result) => {
+  //       props.history.push('/details?id=' + result.id);
+  //       console.log('id', result);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
   // };
 
   const handleReset = () => {
@@ -908,7 +928,7 @@ const PatientInfo = () => {
               {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
               <Link to='/results'>
                 <button className='btn submit-button mr-3'>Submit</button>
-              </Link>
+             </Link>
               <input
                 className='btn alt-button'
                 type='reset'

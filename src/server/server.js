@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 // TODO: Setup Post route - Note: Move to own file in Routes later (see patientinfo.js) and import into Routes/index.js
 app.post('/contact', (req, res) => {
   // Add API KEY
-  sgMail.setApiKey('');
+  sgMail.setApiKey('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');
   // Setup req.body
   const { email, subject, message } = req.body;
   // Create msg

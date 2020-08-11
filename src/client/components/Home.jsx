@@ -66,7 +66,7 @@ const Home = () => {
             <p className='do-more'>Work Smarter</p>
             Not Harder
           </h3>
-          <button className='btn cta-button mt-2'> See Video</button>
+          {/*<button className='btn cta-button mt-2'> See Video</button>*/}
         </div>
         <div className='col-8'>
           <img
@@ -90,7 +90,7 @@ const Home = () => {
             <p className='do-more'>Work Smarter</p>
             Not Harder
           </h3>
-          <button className='btn cta-button mt-2'>See Video</button>
+          {/*<button className='btn cta-button mt-2'> See Video</button>*/}
         </div>
       </div>
 
@@ -232,7 +232,6 @@ const Home = () => {
               name='email'
               value={state.email}
               onChange={handleChange}
-              
             />
           </div>
           <div className='form-group'>
@@ -258,8 +257,7 @@ const Home = () => {
               rows='3'
               name='message'
               value={state.message}
-              onChange={handleChange}
-              ></textarea>
+              onChange={handleChange}></textarea>
           </div>
           <button
             className='btn submit-button float-right px-2'
