@@ -272,7 +272,7 @@ const PatientInfo = (props) => {
           <div className='col-10'>
             <input
               type='tel'
-              pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+              pattern='[0-9]{3}[0-9]{3}[0-9]{4}'
               placeholder='205-911-2020'
               className='form-control'
               name='phone'
