@@ -1,4 +1,4 @@
-// FIXME: Route isn't working, currently run in server.js
+// FIXME: SG-Mailer route isn't working, SG-Mailer currently run in server.js
 import * as express from 'express';
 const sgMail = require('@sendgrid/mail');
 
@@ -18,7 +18,6 @@ router.use((req, res, next) => {
 // TODO: Setup Post route - Note: Move to own file in Routes later (see patientinfo.js) and import into Routes/index.js
 router.post('/contact', (req, res) => {
   // Add API KEY
-  //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
   sgMail.setApiKey('');
   // Setup req.body
   const { email, subject, message } = req.body;

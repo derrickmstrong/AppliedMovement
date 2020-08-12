@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import ResultsCard from './ResultsCard.jsx';
-import Details from '../views/Details.jsx'
+// import Details from '../views/Details.jsx'
 
 const Results = () => {
   const [records, setRecords] = useState([]);
@@ -46,15 +46,15 @@ const Results = () => {
       <div className='row'>
         <div className='col'>
           <h3>Records</h3>
-         
-         {records.map((record) => (
+
+          {records.map((record) => (
             <ResultsCard key={record.id} record={record} />
           ))}
-       
         </div>
-        <div className='col'>
+        {/*<div className='col'>
           <Details />
         </div>
+        */}
       </div>
     </Fragment>
   );

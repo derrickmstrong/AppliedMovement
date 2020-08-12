@@ -99,7 +99,7 @@ const Admin = () => {
               id='name'
               name='name'
               type='text'
-              placeholder='patient name'
+              placeholder='Josh Hurn'
               disabled
               className='form-control'
             />
@@ -112,7 +112,7 @@ const Admin = () => {
               id='email'
               name='email'
               type='email'
-              placeholder='email'
+              placeholder='josh@innovatebham.com'
               className='form-control'
             />
             <label htmlFor='phone'>Phone</label>
@@ -124,7 +124,7 @@ const Admin = () => {
               id='phone'
               name='phone'
               type='tel'
-              placeholder='phone'
+              placeholder='205-911-1119'
               className='form-control'
             />
             <button

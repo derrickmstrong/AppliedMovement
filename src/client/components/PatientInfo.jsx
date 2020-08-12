@@ -95,27 +95,7 @@ const PatientInfo = (props) => {
   //     console.log(error)
   //   }
   // };
-
-  // From Backend
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   fetch('/api/patientinfo', {
-  //     method: 'POST',
-  //     body: JSON.stringify(state),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //     .then((f) => f.json())
-  //     .then((result) => {
-  //       props.history.push('/details?id=' + result.id);
-  //       console.log('id', result);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
-
+  
   const handleReset = () => {
     setState({
       ...state,
@@ -928,7 +908,7 @@ const PatientInfo = (props) => {
               {/* REMOVE LINK BELOW IN ORDER TO SUBMIT/POST DATA LATER */}
               <Link to='/results'>
                 <button className='btn submit-button mr-3'>Submit</button>
-             </Link>
+              </Link>
               <input
                 className='btn alt-button'
                 type='reset'

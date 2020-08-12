@@ -5,7 +5,6 @@ import apiRouter from './routes';
 const cors = require('cors');
 const sgMail = require('@sendgrid/mail');
 
-
 // TODO: Figure out how to make this work so that we don't leave out API open
 // require('dotenv').config({ path: __dirname + './.env' });
 
@@ -36,7 +35,6 @@ app.use((req, res, next) => {
 // TODO: Setup Post route - Note: Move to own file in Routes later (see patientinfo.js) and import into Routes/index.js
 app.post('/contact', (req, res) => {
   // Add API KEY
-  // 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
   sgMail.setApiKey('');
   // Setup req.body
   const { email, subject, message } = req.body;

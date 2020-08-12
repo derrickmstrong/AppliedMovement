@@ -7,7 +7,7 @@ const ResultsCard = (props) => {
   return (
     <div className='col-md-12'>
       <div
-        onClick={() => history.push(`/details/${props.record.id}`)}
+        onClick={() => history.push(`/details/`)}
         className='card my-2 shadow-drop-2-center'>
         <div className='card-body text-center'>
           <h4 className='card-title'>{props.record.name}</h4>

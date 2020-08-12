@@ -4,6 +4,15 @@ import db from '../db';
 const router = express.Router();
 
 // WORKING - GET /api/patientinfo/1 or GET /api/patientinfo
+router.get('/', async (req, res, next) => {
+    try {
+      const queries = await db.queries.all();
+      res.json(queries);
+    } catch (error) {
+      next(error);
+    }
+  });
+
 router.get('/:id?', async (req, res, next) => {
   const id = Number(req.params.id);
   if (id) {
@@ -13,15 +22,9 @@ router.get('/:id?', async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  } else {
-    try {
-      const queries = await db.queries.all();
-      res.json(queries);
-    } catch (error) {
-      next(error);
-    }
-  }
+  } 
 });
+
 
 // In PROGRESS - POST /api/patientinfo/
 router.post('/', async (req, res, next) => {
