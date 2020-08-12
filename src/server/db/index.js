@@ -1,4 +1,5 @@
 import * as mysql from 'mysql';
+import queries from './queries/queries';
 
 const pool = mysql.createPool({
   host: 'localhost',
@@ -22,7 +23,6 @@ export const Query = (query, values) => {
 	});
 };
 
-import queries from './queries/queries';
 export default {
 	queries
 };

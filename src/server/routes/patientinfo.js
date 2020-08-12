@@ -1,18 +1,7 @@
 import * as express from 'express';
 import db from '../db';
-import { orm } from '../db/connection';
 
 const router = express.Router();
-
-
-router.get('/:id', async (req, res, next) => {
-  orm.get('patientinfo', { id: req.params.id }, (err, results) => {
-    if (err || results.length < 1) {
-      res.status(500);
-    }
-    res.json(results[0]);
-  });
-});
 
 // WORKING - GET /api/patientinfo/1 or GET /api/patientinfo
 router.get('/:id?', async (req, res, next) => {
@@ -72,30 +61,5 @@ router.delete('/:id', async (req, res, next) => {
     console.log(error);
   }
 });
-
-// // Search Component
-// router.get('/search/:term', (req, res) => {
-//   connection.execute('SELECT * FROM patientinfo WHERE name LIKE ?',[req.params.term+'%'],(err, results)=> {
-//     res.json(results)
-//   })
-// })
-
-// // BY ID
-// router.get('/:id', async (req, res, next) => {
-//   orm.get('patientinfo', { id: req.params.id }, (err, results) => {
-//     if (err || results.length < 1) {
-//       res.status(500);
-//     }
-//     res.json(results[0]);
-//   });
-// });
-
-// // POST 
-// router.post('/', async (req, res, next) => {
-//   orm.insert('patientinfo', req.body, (err, result) => {
-//     res.json({ id: result.insertId });
-//   });
-// });
-
 
 export default router;
